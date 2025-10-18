@@ -54,7 +54,7 @@ except:
 try:
     import torch
 except:
-    install("torch==2.8.0+cpu", "-f", "https://download.pytorch.org/whl/torch_stable.html")
+    install("torch==2.8.0+cpu","--break-system-packages", "--pre", "torchvision", "--index-url", "https://download.pytorch.org/whl/nightly/cpu")
 try:
     import matplotlib
 except:
@@ -472,3 +472,4 @@ if modelofAI == "2":
 #        )
 #
 #        print(chat_completion.choices[0].message.content)
+
