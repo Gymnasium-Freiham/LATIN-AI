@@ -13,3 +13,5 @@ executors/python_installer.exe
 executors/python
 executors/get-pip.py
 /pythoninstaller.bat
+deobfuscation_mappings.txt
+obfuscator.py
