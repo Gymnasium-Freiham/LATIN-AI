@@ -30,7 +30,7 @@ if "--deobfuscate" in sys.argv:
 else:
     # Fallback: GitHub verwenden
     try:
-        github_url = "https://raw.githubusercontent.com/Gymnasium-Freiham/LATIN-AI/refs/heads/main/deobfuscation_mappings.txt"
+        github_url = "https://raw.githubusercontent.com/Gymnasium-Freiham/LATIN-AI/refs/heads/main/main_obfuscation_mappings.txt"
         mapping = load_mapping("url", github_url)
         print("ℹ️ Mapping von GitHub geladen.")
     except Exception as e:
