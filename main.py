@@ -32,9 +32,9 @@ else:
     try:
         github_url = "https://raw.githubusercontent.com/Gymnasium-Freiham/LATIN-AI/refs/heads/main/main_obfuscation_mappings.txt"
         mapping = load_mapping("url", github_url)
-        print("ℹ Mapping von GitHub geladen.")
+        print("Mapping von GitHub geladen.")
     except Exception as e:
-        print("Fehler beim Laden der GitHub-Mapping-Datei:", e)
+        print("Fehler beim laden der GitHub-Mapping-Datei:", e)
         sys.exit(1)
 
 # Originalcode laden
