@@ -67,291 +67,320 @@ except Exception:
 sys.exit(exit_code)
 ###DEOBFUSCATE_END###
 
-#main.py
-MNldDInq =True 
+import winreg 
+def VJoq16uq ():
+    try :
+        with winreg .XQtJvqfY (winreg .EdNDYeIT ,r"Software\LATIN AI")as eh9vPcfk :
+            gY4vUBfR ,icQlAJdW =winreg .qd2jBJzc (eh9vPcfk ,"InstallDir")
+            return gY4vUBfR 
+    except ovBEMnmG :
+        print ("Installationsverzeichnis nicht gefunden")
+        return None 
+
+def gbYq9yur (gY4vUBfR ):
+    if gY4vUBfR :
+        os .Y8pTGiRN (gY4vUBfR )
+        print (f"Arbeitsverzeichnis erfolgreich zu {gY4vUBfR } gewechselt")
+    else :
+        print ("Fehler beim Wechseln des Arbeitsverzeichnisses")
+
+
+def TLb4rxEp (eh9vPcfk ,lT9uUXHF ,pbzBJM6C =None ):
+    try :
+        with winreg .XQtJvqfY (winreg .EdNDYeIT ,eh9vPcfk )as r2JkqtAx :
+            ib5tUHvM ,icQlAJdW =winreg .qd2jBJzc (r2JkqtAx ,lT9uUXHF )
+            return ib5tUHvM 
+    except ovBEMnmG :
+        return pbzBJM6C 
+def rXOVJBNs (eh9vPcfk ,lT9uUXHF ,data ):
+    with winreg .VN3EnrPu (winreg .EdNDYeIT ,eh9vPcfk )as r2JkqtAx :
+        winreg .Qg9dKcmv (r2JkqtAx ,lT9uUXHF ,0 ,winreg .vldaEva5 ,data )
+
+        #main.py
+JGoPxxxt =True 
 import subprocess 
 import sys 
 import os 
 import unicodedata 
-sys .PmjYepgU .Gl9lVWQV (0 ,os .PmjYepgU .vrU2HT7Z (UITOBXkc ))
+sys .WWDVFKTW .wjZhyZg2 (0 ,os .WWDVFKTW .xQMoysIJ (Fy2KQBO5 ))
 
-if MNldDInq ==False :
-    sys .bfBVKETU ("Error-code: 0x43R43DESACTIV7ATED36")
+if JGoPxxxt ==False :
+    sys .jra6tnhO ("Error-code: 0x43R43DESACTIV7ATED36")
 
     # Installiere notwendige Bibliotheken
-def CbuQCbMT (qFNEIMIm ):
-    subprocess .VsjKCH4f ([sys .tTYwGr4C ,"-m","pip","install",qFNEIMIm ])
+def hOZ3QXOc (gCOgn5oh ):
+    subprocess .P5cbbiYJ ([sys .IEZlOfA3 ,"-m","pip","install",gCOgn5oh ])
 
-CbuQCbMT ("nltk")
-CbuQCbMT ("scikit-learn")
-CbuQCbMT ("numpy")
-CbuQCbMT ("requests")
-CbuQCbMT ("groq")
-CbuQCbMT ("PyQt5")
+hOZ3QXOc ("nltk")
+hOZ3QXOc ("scikit-learn")
+hOZ3QXOc ("numpy")
+hOZ3QXOc ("requests")
+hOZ3QXOc ("groq")
+hOZ3QXOc ("PyQt5")
 try :
     import torch 
 except :
-    CbuQCbMT ("torch")
-CbuQCbMT ("matplotlib")
-VGl5VGLn =True 
+    hOZ3QXOc ("torch")
+hOZ3QXOc ("matplotlib")
+ml6nJfyC =True 
 try :
-    CbuQCbMT ("simpleaudio")
+    hOZ3QXOc ("simpleaudio")
 except :
-    VGl5VGLn =False 
+    ml6nJfyC =False 
 
-from NFXVQCHd .bOPVT8Ux import quote 
-if VGl5VGLn !=False :
+from Hl2PM8xm .koAI02JG import quote 
+if ml6nJfyC !=False :
     import simpleaudio as sa 
 from groq import Groq 
 import json 
 import nltk 
 import numpy as np 
 import random 
-from gLc1T3Y1 .dr3OQSaO .bYm31FIV import TfidfVectorizer 
-from gLc1T3Y1 .D7cGSJk9 import SVC 
+from whhQHFbh .ABGJApJk .cxJ6d7JN import TfidfVectorizer 
+from whhQHFbh .l1GuvtWM import SVC 
 import os 
 import requests 
 import torch 
 import torch .nn as nn 
-from pgPed4U1 .djUaXVAG import QApplication 
+from r0NjvBIy .x4lwbTf2 import QApplication 
 import os 
 
 # Lade NLTK-Daten
-nltk .uHSbpQjP ('punkt')
-nltk .uHSbpQjP ('wordnet')
-nltk .uHSbpQjP ('averaged_perceptron_tagger')
-nltk .uHSbpQjP ('maxent_ne_chunker')
-nltk .uHSbpQjP ('words')
-nltk .uHSbpQjP ('averaged_perceptron_tagger_eng')
-nltk .uHSbpQjP ('maxent_ne_chunker_tab')
-Fo6j1qBb =Groq (A5y6mnA6 ="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")
+nltk .SA5t95KJ ('punkt')
+nltk .SA5t95KJ ('wordnet')
+nltk .SA5t95KJ ('averaged_perceptron_tagger')
+nltk .SA5t95KJ ('maxent_ne_chunker')
+nltk .SA5t95KJ ('words')
+nltk .SA5t95KJ ('averaged_perceptron_tagger_eng')
+nltk .SA5t95KJ ('maxent_ne_chunker_tab')
+fJYArGFY =Groq (fZMbd7MS ="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")
 
-from nltk .cTJ1fDuh import word_tokenize 
-from nltk .Xhw7iAQ9 import PorterStemmer 
-from nltk .Xhw7iAQ9 import WordNetLemmatizer 
+from nltk .TisTdG3x import word_tokenize 
+from nltk .whihQgPq import PorterStemmer 
+from nltk .whihQgPq import WordNetLemmatizer 
 from nltk import pos_tag ,ne_chunk 
 
 from data import load_training_data ,load_and_append_data ,fetch_wikipedia_summary ,fetch_wikipedia_variants ,fetch_wikipedia_page_text ,fetch_wiktionary_definition ,extract_subject_from_question 
 
 # Setze Seed für Reproduzierbarkeit
-def GgbTHuVT (pjj5FFUt ):
-    np .random .pjj5FFUt (pjj5FFUt )
-    random .pjj5FFUt (pjj5FFUt )
-    torch .omYGcOlt (pjj5FFUt )
+def TS0sTxef (DjK1FxmX ):
+    np .random .DjK1FxmX (DjK1FxmX )
+    random .DjK1FxmX (DjK1FxmX )
+    torch .FgNI2MWf (DjK1FxmX )
 
-GgbTHuVT (42 )# Beispiel-Seed
+TS0sTxef (42 )# Beispiel-Seed
 
 # Lade das Trainingsdatenset aus der JSON-Datei
-PHChUi02 =load_training_data ()
-PHChUi02 =load_and_append_data (PHChUi02 ,'./assets/comics.json','comicSeries')
-PHChUi02 =load_and_append_data (PHChUi02 ,'./assets/dishes.json','dishes')
-PHChUi02 =load_and_append_data (PHChUi02 ,'./assets/books.json','books')
-PHChUi02 =load_and_append_data (PHChUi02 ,'./assets/movies.json','movies')
-PHChUi02 =load_and_append_data (PHChUi02 ,'./assets/fruits.json','fruits')
-PHChUi02 =load_and_append_data (PHChUi02 ,'./assets/animals.json','animals')
-PHChUi02 =load_and_append_data (PHChUi02 ,'./assets/windows.json','windowsVersions')
-PHChUi02 =load_and_append_data (PHChUi02 ,'./assets/deutsch6klassebayern.json','deutsch6klassebayern')
-PHChUi02 =load_and_append_data (PHChUi02 ,'./assets/superMarioGames.json','superMarioGames')
-PHChUi02 =load_and_append_data (PHChUi02 ,'./assets/informatik6klassebayern.json','informatik6klassebayern')
-PHChUi02 =load_and_append_data (PHChUi02 ,'./assets/mathematik6klassebayern.json','mathematik6klassebayern')
+q1LuUTJa =load_training_data ()
+q1LuUTJa =load_and_append_data (q1LuUTJa ,'./assets/comics.json','comicSeries')
+q1LuUTJa =load_and_append_data (q1LuUTJa ,'./assets/dishes.json','dishes')
+q1LuUTJa =load_and_append_data (q1LuUTJa ,'./assets/books.json','books')
+q1LuUTJa =load_and_append_data (q1LuUTJa ,'./assets/movies.json','movies')
+q1LuUTJa =load_and_append_data (q1LuUTJa ,'./assets/fruits.json','fruits')
+q1LuUTJa =load_and_append_data (q1LuUTJa ,'./assets/animals.json','animals')
+q1LuUTJa =load_and_append_data (q1LuUTJa ,'./assets/windows.json','windowsVersions')
+q1LuUTJa =load_and_append_data (q1LuUTJa ,'./assets/deutsch6klassebayern.json','deutsch6klassebayern')
+q1LuUTJa =load_and_append_data (q1LuUTJa ,'./assets/superMarioGames.json','superMarioGames')
+q1LuUTJa =load_and_append_data (q1LuUTJa ,'./assets/informatik6klassebayern.json','informatik6klassebayern')
+q1LuUTJa =load_and_append_data (q1LuUTJa ,'./assets/mathematik6klassebayern.json','mathematik6klassebayern')
 
-def aG0czq82 (PHChUi02 ,y4SdDlTI ='./addons'):
+def hUewr9ea (q1LuUTJa ,wzDWCRi9 ='./addons'):
     """
     Scan addons_dir for .json or .mintaiaddon files that contain dataset JSON and append them.
     Uses load_and_append_data which will parse the file and append heuristically.
     """
-    if not os .PmjYepgU .BRQcRAv4 (y4SdDlTI ):
-        return PHChUi02 
-    for b6IUYFU0 in y2B3kTqq (os .CeeuyYT9 (y4SdDlTI )):
-        if not (b6IUYFU0 .HHv5Lm50 ().xwTGWH8w ('.json')or b6IUYFU0 .HHv5Lm50 ().xwTGWH8w ('.mintaiaddon')):
+    if not os .WWDVFKTW .bUK36fjh (wzDWCRi9 ):
+        return q1LuUTJa 
+    for Sp4vLdLs in V49hoXZ1 (os .LYaO7GFf (wzDWCRi9 )):
+        if not (Sp4vLdLs .WQxZWrkw ().yTkMFqwK ('.json')or Sp4vLdLs .WQxZWrkw ().yTkMFqwK ('.mintaiaddon')):
             continue 
-        PmjYepgU =os .PmjYepgU .ZekTGKCR (y4SdDlTI ,b6IUYFU0 )
+        WWDVFKTW =os .WWDVFKTW .NmbdZurb (wzDWCRi9 ,Sp4vLdLs )
         try :
         # try to append the file as JSON dataset; load_and_append_data will open and infer structure
-            PHChUi02 =load_and_append_data (PHChUi02 ,PmjYepgU ,uLvGhsQk =None )
-            print (f"Addon-Dataset angehängt: {PmjYepgU }")
-        except MUiXSBLW as cGG0cYe6 :
-            print (f"Fehler beim Anhängen von Addon {PmjYepgU }: {cGG0cYe6 }")
-    return PHChUi02 
+            q1LuUTJa =load_and_append_data (q1LuUTJa ,WWDVFKTW ,eh9vPcfk =None )
+            print (f"Addon-Dataset angehängt: {WWDVFKTW }")
+        except wT3SaHXi as MJ0QaHx4 :
+            print (f"Fehler beim Anhängen von Addon {WWDVFKTW }: {MJ0QaHx4 }")
+    return q1LuUTJa 
 
     # Prüfe ./addons auf zusätzliche Datendateien und hänge sie an
-PHChUi02 =aG0czq82 (PHChUi02 ,'./addons')
+q1LuUTJa =hUewr9ea (q1LuUTJa ,'./addons')
 
-if not PHChUi02 :
-    raise HQfQaU2b ("Das Trainingsdatenset ist leer. Bitte überprüfen Sie die Quelle der Daten.")
+if not q1LuUTJa :
+    raise qlzS3ieI ("Das Trainingsdatenset ist leer. Bitte überprüfen Sie die Quelle der Daten.")
 
     # Daten vorverarbeiten
-hBXsvWcT =TfidfVectorizer ()
-LunLS2R9 =[data ['question']for data in PHChUi02 ]
-E8Lepu0y =hBXsvWcT .RiUuWvfn (LunLS2R9 )
+RGpmHwlH =TfidfVectorizer ()
+ZW72dwWN =[data ['question']for data in q1LuUTJa ]
+wsn1lJXb =RGpmHwlH .vrXobOww (ZW72dwWN )
 
-nGlP19CX =[data ['answer']for data in PHChUi02 ]
-EXTaWmtO =SVC (E3Rend2x ='linear')
-EXTaWmtO .YjYoQPwg (E8Lepu0y ,nGlP19CX )
+Mi2cexaI =[data ['answer']for data in q1LuUTJa ]
+Q3OIrOPk =SVC (kffzbHNo ='linear')
+Q3OIrOPk .I25oaVPG (wsn1lJXb ,Mi2cexaI )
 
 # Zusatzfunktionen für NLP
-PqbHYzRE =PorterStemmer ()
-VfiadNcN =WordNetLemmatizer ()
-oicMIAAD =input ("Wähle ein Modell aus (Gemma2-9b-it[1] LATIN-AI[2]):")
+xP9upUxz =PorterStemmer ()
+xINTHIsa =WordNetLemmatizer ()
+KOVUiEI9 =input ("Wähle ein Modell aus (Gemma2-9b-it[1] LATIN-AI[2]):")
 
-def KtOPPWyi (bYm31FIV ,PQilHxcH =False ):
+def c9yoaxLU (cxJ6d7JN ,Ewcqiy2w =False ):
     try :
     # Wähle den passenden Modus: audible (default) oder ultrasound
-        PzGGQtKL ="&p=4"if PQilHxcH else ""
-        wws5VOQP =quote (bYm31FIV )
-        NnPhg8SZ =f"https://ggwave-to-file.ggerganov.com/?m={wws5VOQP }{PzGGQtKL }"
-        mALN8sb5 ="gibberlink.wav"
+        mosnUcDq ="&p=4"if Ewcqiy2w else ""
+        ikdSe6PS =quote (cxJ6d7JN )
+        w5GT6WL0 =f"https://ggwave-to-file.ggerganov.com/?m={ikdSe6PS }{mosnUcDq }"
+        jP0NYsrZ ="gibberlink.wav"
 
         # Lade die WAV-Datei herunter
-        os .wLAqxkmL (f"curl -sS {NnPhg8SZ } --output {mALN8sb5 }")
+        os .saIQi82v (f"curl -sS {w5GT6WL0 } --output {jP0NYsrZ }")
 
         # Prüfe, ob die Datei existiert und abspielbar ist
-        if os .PmjYepgU .VVlsMlEl (mALN8sb5 ):
+        if os .WWDVFKTW .yknDlt5d (jP0NYsrZ ):
             try :
-                subprocess .OyF1bs1o (["python","./experimental/gibberlink.py",mALN8sb5 ])
-            except MUiXSBLW as P1RPyicI :
-                print (f"[Gibberlink] Audio konnte nicht abgespielt werden: {P1RPyicI }")
+                subprocess .CX8RWFqq (["python","./experimental/gibberlink.py",jP0NYsrZ ])
+            except wT3SaHXi as EKQNtC10 :
+                print (f"[Gibberlink] Audio konnte nicht abgespielt werden: {EKQNtC10 }")
         else :
             print ("[Gibberlink] WAV-Datei wurde nicht erfolgreich heruntergeladen.")
-    except MUiXSBLW as cGG0cYe6 :
-        print (f"[Gibberlink] Fehler beim Senden des Tons: {cGG0cYe6 }")
+    except wT3SaHXi as MJ0QaHx4 :
+        print (f"[Gibberlink] Fehler beim Senden des Tons: {MJ0QaHx4 }")
         # Transformer-Architektur
-class VhEI2UxS (nn .LKnomQMv ):
-    def R2a5zmKP (self ,dkkKDOCz ,Ct6yAHQX ,XV88zklq ,bBoop1SU ,cO3cYU09 ):
-        super (VhEI2UxS ,self ).R2a5zmKP ()
-        self .q8DldqJy =nn .BOq6wL2c (dkkKDOCz ,Ct6yAHQX )
-        self .CVlKc5kO =nn .dxtUHxLJ (Ct6yAHQX ,XV88zklq ,bBoop1SU )
-        self .Q3IWwvpH =nn .QCsyxihj (Ct6yAHQX ,cO3cYU09 )
+class a8qLJrvi (nn .EO3g6taO ):
+    def HcUPobv3 (self ,IccI8CDE ,ntNLrGTn ,xkjX7FCS ,AnpPH5Ul ,LEgesqKn ):
+        super (a8qLJrvi ,self ).HcUPobv3 ()
+        self .J6ik1xhq =nn .zlLQruIY (IccI8CDE ,ntNLrGTn )
+        self .IfZdZYvl =nn .d7VelXzi (ntNLrGTn ,xkjX7FCS ,AnpPH5Ul )
+        self .BCZ41z00 =nn .hVUrRuKQ (ntNLrGTn ,LEgesqKn )
 
-    def r1EItsse (self ,Hyp1Hvc8 ,ruuvoY8x ):
-        Hyp1Hvc8 =self .q8DldqJy (Hyp1Hvc8 )
-        ruuvoY8x =self .q8DldqJy (ruuvoY8x )
-        wflMdJtr =self .CVlKc5kO (Hyp1Hvc8 ,ruuvoY8x )
-        wflMdJtr =self .Q3IWwvpH (wflMdJtr )
-        return wflMdJtr 
+    def O1L8O8x5 (self ,dJE25XLt ,TqYF84xI ):
+        dJE25XLt =self .J6ik1xhq (dJE25XLt )
+        TqYF84xI =self .J6ik1xhq (TqYF84xI )
+        DzZVrMtQ =self .IfZdZYvl (dJE25XLt ,TqYF84xI )
+        DzZVrMtQ =self .BCZ41z00 (DzZVrMtQ )
+        return DzZVrMtQ 
 
         # Initialisiere das Transformer-Modell
-dkkKDOCz =len (hBXsvWcT .EzoQZoGO )
-Ct6yAHQX =512 
-XV88zklq =8 
-bBoop1SU =6 
-cO3cYU09 =len (set (nGlP19CX ))
-x7AtMDFz =VhEI2UxS (dkkKDOCz ,Ct6yAHQX ,XV88zklq ,bBoop1SU ,cO3cYU09 )
+IccI8CDE =len (RGpmHwlH .uqGVIxqc )
+ntNLrGTn =512 
+xkjX7FCS =8 
+AnpPH5Ul =6 
+LEgesqKn =len (set (Mi2cexaI ))
+UYGP9jQK =a8qLJrvi (IccI8CDE ,ntNLrGTn ,xkjX7FCS ,AnpPH5Ul ,LEgesqKn )
 
-if oicMIAAD =="2":
-    def GIE5dgz3 (bYm31FIV ):
+if KOVUiEI9 =="2":
+    def QPGwrvxu (cxJ6d7JN ):
         try :
-            O9XfFnDJ =word_tokenize (bYm31FIV )
-            UFwXAsw9 =[PqbHYzRE .Xhw7iAQ9 (OuojIsL3 )for OuojIsL3 in O9XfFnDJ ]
-            MCUtynhR =[VfiadNcN .lWC3Ndv4 (OuojIsL3 )for OuojIsL3 in O9XfFnDJ ]
-            ypcdlhHH =pos_tag (O9XfFnDJ )
-            NG0CUroN =ne_chunk (ypcdlhHH )
+            ugoHk4nz =word_tokenize (cxJ6d7JN )
+            HZf5PjbH =[xP9upUxz .whihQgPq (Fb6cv0cT )for Fb6cv0cT in ugoHk4nz ]
+            xjXPOpad =[xINTHIsa .LGiKAN2f (Fb6cv0cT )for Fb6cv0cT in ugoHk4nz ]
+            W7tVGi7q =pos_tag (ugoHk4nz )
+            LvZtLGd5 =ne_chunk (W7tVGi7q )
             return {
-            "tokens":O9XfFnDJ ,
-            "stemmed":UFwXAsw9 ,
-            "lemmatized":MCUtynhR ,
-            "pos_tags":ypcdlhHH ,
-            "named_entities":NG0CUroN 
+            "tokens":ugoHk4nz ,
+            "stemmed":HZf5PjbH ,
+            "lemmatized":xjXPOpad ,
+            "pos_tags":W7tVGi7q ,
+            "named_entities":LvZtLGd5 
             }
-        except MUiXSBLW as cGG0cYe6 :
-            return {"error":str (cGG0cYe6 )}
-    import GdmP5keh .iRrT98uQ as plt 
+        except wT3SaHXi as MJ0QaHx4 :
+            return {"error":str (MJ0QaHx4 )}
+    import CMG7cNjq .gBCfZ6GD as plt 
 
-    def okHLgufK (OMXagALU ,mALN8sb5 ="plot.png"):
+    def Vkw0ujsQ (jXexuAdD ,jP0NYsrZ ="plot.png"):
         try :
         # Beispiel: Parabel zeichnen
-            if OMXagALU =="parabel":
-                eeKP2ngy =np .Ib0bZbVt (-10 ,10 ,400 )
-                v19jVaaA =eeKP2ngy **2 
-                plt .frZuDLAO ()
-                plt .PBimxQO7 (eeKP2ngy ,v19jVaaA ,iScIBZGu ="y = x^2")
-                plt .orxDrAOj ("Parabel")
-                plt .PJKiJC3j ("x")
-                plt .N9VOX0sB ("y")
-                plt .b3Teqpht (0 ,zsSl9C3l ='black',OIbh77kn =0.5 )
-                plt .xbg8Qys5 (0 ,zsSl9C3l ='black',OIbh77kn =0.5 )
-                plt .V2WEcgZA (zsSl9C3l ='gray',zMn4JICz ='--',OIbh77kn =0.5 )
-                plt .TAI7w8Pi ()
-                plt .fz77p3XH (mALN8sb5 )
-                plt .IJxZQt9X ()
-                return mALN8sb5 
+            if jXexuAdD =="parabel":
+                lT10nR1R =np .tfsqOLIT (-10 ,10 ,400 )
+                tdMDlerf =lT10nR1R **2 
+                plt .yiSO1sQD ()
+                plt .Br2HeN8A (lT10nR1R ,tdMDlerf ,A69i8P1J ="y = x^2")
+                plt .ArBSN4oB ("Parabel")
+                plt .alAvO03K ("x")
+                plt .Wyh4Jan9 ("y")
+                plt .Zdd34fYP (0 ,suoE4tzh ='black',XhaaLglC =0.5 )
+                plt .XCmZPzio (0 ,suoE4tzh ='black',XhaaLglC =0.5 )
+                plt .aD9Nqypc (suoE4tzh ='gray',RIYVjIlA ='--',XhaaLglC =0.5 )
+                plt .pHbQ9ryJ ()
+                plt .AglgPH0d (jP0NYsrZ )
+                plt .JLoGlvkM ()
+                return jP0NYsrZ 
             else :
                 return None 
-        except MUiXSBLW as cGG0cYe6 :
-            print (f"Fehler beim Generieren der Grafik: {cGG0cYe6 }")
+        except wT3SaHXi as MJ0QaHx4 :
+            print (f"Fehler beim Generieren der Grafik: {MJ0QaHx4 }")
             return None 
 
             # Funktion zur Evaluierung mathematischer Ausdrücke
-    def EJ5RZnjL (OMXagALU ):
+    def ekVR3aZ2 (jXexuAdD ):
         try :
         # Berechne das Ergebnis
-            Of2Sjtwq =etw9tApW (OMXagALU )
+            ib5tUHvM =zneb9Fsf (jXexuAdD )
 
             # Visualisiere die Rechenschritte
-            mALN8sb5 =pXnQfEBn (OMXagALU )
-            if mALN8sb5 :
-                aiHXC64c (mALN8sb5 )
+            jP0NYsrZ =ZAObNofq (jXexuAdD )
+            if jP0NYsrZ :
+                nETi1472 (jP0NYsrZ )
 
-            return f"Das Ergebnis ist: {Of2Sjtwq }"
-        except MUiXSBLW as cGG0cYe6 :
-            return f"Fehler beim Auswerten des Ausdrucks: {str (cGG0cYe6 )}"
+            return f"Das Ergebnis ist: {ib5tUHvM }"
+        except wT3SaHXi as MJ0QaHx4 :
+            return f"Fehler beim Auswerten des Ausdrucks: {str (MJ0QaHx4 )}"
     import re 
-    def SBYoLiUb ():
+    def iujXM5Ao ():
         try :
-            os .wLAqxkmL ("code")
-        except MUiXSBLW as cGG0cYe6 :
-            print (f"Visual Studio code not installed or not on path; {cGG0cYe6 }")
-    def u4lDp9hu (BQ8H1yQa ):
-        BQ8H1yQa ="Unimplemented Feature"
-        return BQ8H1yQa 
-    def pXnQfEBn (OMXagALU ,mALN8sb5 ="calculation_steps.png"):
+            os .saIQi82v ("code")
+        except wT3SaHXi as MJ0QaHx4 :
+            print (f"Visual Studio code not installed or not on path; {MJ0QaHx4 }")
+    def JYezLFom (yrrV2DIj ):
+        yrrV2DIj ="Unimplemented Feature"
+        return yrrV2DIj 
+    def ZAObNofq (jXexuAdD ,jP0NYsrZ ="calculation_steps.png"):
         try :
         # Zerlege den Ausdruck in Schritte
-            eKfCrgbX =[]
-            Glq3Ry1B =OMXagALU 
+            ZMs3YxhM =[]
+            fEYzQFo4 =jXexuAdD 
 
             # Berechne Schritt für Schritt unter Berücksichtigung der Reihenfolge der Operationen
             while True :
             # Finde die innerste Klammer oder den nächsten Operator
-                AZyBGQY4 =re .ELFlhVeN (r"\(([^()]+)\)",Glq3Ry1B )# Suche nach Klammern
-                if AZyBGQY4 :
-                    Av0Yxw0z =AZyBGQY4 .O424etON (1 )
-                    Of2Sjtwq =etw9tApW (Av0Yxw0z )
-                    eKfCrgbX .x45v63Zs ((f"{Av0Yxw0z } = {Of2Sjtwq }",Of2Sjtwq ))
-                    Glq3Ry1B =Glq3Ry1B .CJvWLhUz (f"({Av0Yxw0z })",str (Of2Sjtwq ))
+                Xuy8GAwj =re .wt4L20KJ (r"\(([^()]+)\)",fEYzQFo4 )# Suche nach Klammern
+                if Xuy8GAwj :
+                    cyAsEnp2 =Xuy8GAwj .Xlw1tRwn (1 )
+                    ib5tUHvM =zneb9Fsf (cyAsEnp2 )
+                    ZMs3YxhM .gmQPJ3CV ((f"{cyAsEnp2 } = {ib5tUHvM }",ib5tUHvM ))
+                    fEYzQFo4 =fEYzQFo4 .V071qi1q (f"({cyAsEnp2 })",str (ib5tUHvM ))
                 else :
                 # Keine Klammern mehr, berechne den Rest
-                    Of2Sjtwq =etw9tApW (Glq3Ry1B )
-                    eKfCrgbX .x45v63Zs ((f"{Glq3Ry1B } = {Of2Sjtwq }",Of2Sjtwq ))
+                    ib5tUHvM =zneb9Fsf (fEYzQFo4 )
+                    ZMs3YxhM .gmQPJ3CV ((f"{fEYzQFo4 } = {ib5tUHvM }",ib5tUHvM ))
                     break 
 
                     # Erstelle die Grafik
-            plt .frZuDLAO (dJXCNVDx =(10 ,6 ))
-            Roo5oDWe =range (len (eKfCrgbX ))
-            JR7y85Ul =[jO5rxSys [0 ]for jO5rxSys in eKfCrgbX ]
-            hcsE7Lpg =[jO5rxSys [1 ]for jO5rxSys in eKfCrgbX ]
+            plt .yiSO1sQD (mhGl6TCw =(10 ,6 ))
+            O2lE2GtP =range (len (ZMs3YxhM ))
+            FJ31rcRV =[QEOb7kYe [0 ]for QEOb7kYe in ZMs3YxhM ]
+            y1p3Nw1b =[QEOb7kYe [1 ]for QEOb7kYe in ZMs3YxhM ]
 
-            plt .f7rWpEAE (Roo5oDWe ,hcsE7Lpg ,zsSl9C3l ='skyblue')
-            plt .FHJGEjbh (Roo5oDWe ,JR7y85Ul )
-            plt .PJKiJC3j ("Ergebnisse")
-            plt .orxDrAOj ("Rechenschritte")
-            plt .YMvDMHrW ()
-            plt .fz77p3XH (mALN8sb5 )
-            plt .IJxZQt9X ()
-            return mALN8sb5 
-        except MUiXSBLW as cGG0cYe6 :
-            print (f"Fehler bei der Visualisierung der Rechenschritte: {cGG0cYe6 }")
+            plt .FqnfCNkF (O2lE2GtP ,y1p3Nw1b ,suoE4tzh ='skyblue')
+            plt .aHAAl5Vq (O2lE2GtP ,FJ31rcRV )
+            plt .alAvO03K ("Ergebnisse")
+            plt .ArBSN4oB ("Rechenschritte")
+            plt .y8mlA8qa ()
+            plt .AglgPH0d (jP0NYsrZ )
+            plt .JLoGlvkM ()
+            return jP0NYsrZ 
+        except wT3SaHXi as MJ0QaHx4 :
+            print (f"Fehler bei der Visualisierung der Rechenschritte: {MJ0QaHx4 }")
             return None 
 
 
             # --- NEW: extract measurement snippets from text and try wiki variants ---
-    def zOPmHwpm (bYm31FIV ):
-        if not bYm31FIV :
+    def IcqwncWi (cxJ6d7JN ):
+        if not cxJ6d7JN :
             return None 
             # normalize whitespace
-        Y7KwggWV =re .TK941fkh (r'\s+',' ',bYm31FIV )
+        JIRy1Bqz =re .osGWSfk3 (r'\s+',' ',cxJ6d7JN )
         # common unit patterns (DE + EN) and numeric ranges
-        pIrJ69fl =[
+        u1uP3w7T =[
         r'(\d{1,4}(?:[.,]\d+)?\s?(?:m|Meter|Metern|meter|metres|meters|cm|Zentimeter|centimeter|km|Millimeter|mm|ft|feet|in|inch|Zoll))',
         r'(\d{1,4}(?:[.,]\d+)?\s?(?:cm|Zentimeter|centimeter))',
         r'(\d{1,4}(?:[.,]\d+)?\s?(?:kg|Kilogramm|g|Gramm|lbs|pounds))',
@@ -360,68 +389,68 @@ if oicMIAAD =="2":
         r'(etwa\s+\d+(?:[.,]\d+)?\s?(?:m|cm|kg))',
         r'(~\s?\d+(?:[.,]\d+)?\s?(?:m|cm|kg))',
         ]
-        for NlfddWjg in pIrJ69fl :
-            cd3R1jn7 =re .ELFlhVeN (NlfddWjg ,Y7KwggWV ,Q0swAgoP =re .e9ZpexQU )
-            if cd3R1jn7 :
-                return cd3R1jn7 .O424etON (1 ).xZd2cl2Z ()
+        for yNDotmcj in u1uP3w7T :
+            uHbHOlJ3 =re .wt4L20KJ (yNDotmcj ,JIRy1Bqz ,G0cUW5Uq =re .XT37wjxp )
+            if uHbHOlJ3 :
+                return uHbHOlJ3 .Xlw1tRwn (1 ).Lls0axdD ()
                 # phrases like "average/typical length is 4.5 m" (EN/DE)
-        cd3R1jn7 =re .ELFlhVeN (r'(?:average|typical|mean|durchschnittlich|im Durchschnitt)\s+(?:length|Länge)\s*(?:is|ist|:)?\s*([\d.,]+\s?(?:m|cm|metres|meters|ft|feet|in|inch|Zentimeter|Zoll))',Y7KwggWV ,Q0swAgoP =re .e9ZpexQU )
-        if cd3R1jn7 :
-            return cd3R1jn7 .O424etON (1 ).xZd2cl2Z ()
+        uHbHOlJ3 =re .wt4L20KJ (r'(?:average|typical|mean|durchschnittlich|im Durchschnitt)\s+(?:length|Länge)\s*(?:is|ist|:)?\s*([\d.,]+\s?(?:m|cm|metres|meters|ft|feet|in|inch|Zentimeter|Zoll))',JIRy1Bqz ,G0cUW5Uq =re .XT37wjxp )
+        if uHbHOlJ3 :
+            return uHbHOlJ3 .Xlw1tRwn (1 ).Lls0axdD ()
             # "length is X m" or "ist X m"
-        cd3R1jn7 =re .ELFlhVeN (r'(?:length|Länge)\s*(?:is|ist|:)?\s*([\d.,]+\s?(?:m|cm|ft|in|metres|meters|Zentimeter|Zoll))',Y7KwggWV ,Q0swAgoP =re .e9ZpexQU )
-        if cd3R1jn7 :
-            return cd3R1jn7 .O424etON (1 ).xZd2cl2Z ()
+        uHbHOlJ3 =re .wt4L20KJ (r'(?:length|Länge)\s*(?:is|ist|:)?\s*([\d.,]+\s?(?:m|cm|ft|in|metres|meters|Zentimeter|Zoll))',JIRy1Bqz ,G0cUW5Uq =re .XT37wjxp )
+        if uHbHOlJ3 :
+            return uHbHOlJ3 .Xlw1tRwn (1 ).Lls0axdD ()
             # fallback: "ist X lang" style
-        cd3R1jn7 =re .ELFlhVeN (r'ist\s+(?:etwa|ungefähr|ca\.?|circa)?\s*([\d.,\s\-–]+)\s?(m|cm|kg|Meter|Zentimeter|Kilogramm|Zoll|inch|feet)',Y7KwggWV ,Q0swAgoP =re .e9ZpexQU )
-        if cd3R1jn7 :
-            OYsXe7o6 =cd3R1jn7 .O424etON (1 ).xZd2cl2Z ().CJvWLhUz (' ','')
-            yb7UesuT =cd3R1jn7 .O424etON (2 ).xZd2cl2Z ()
-            return f"{OYsXe7o6 }{yb7UesuT }"
+        uHbHOlJ3 =re .wt4L20KJ (r'ist\s+(?:etwa|ungefähr|ca\.?|circa)?\s*([\d.,\s\-–]+)\s?(m|cm|kg|Meter|Zentimeter|Kilogramm|Zoll|inch|feet)',JIRy1Bqz ,G0cUW5Uq =re .XT37wjxp )
+        if uHbHOlJ3 :
+            AQWcgSV1 =uHbHOlJ3 .Xlw1tRwn (1 ).Lls0axdD ().V071qi1q (' ','')
+            YVqskJAM =uHbHOlJ3 .Xlw1tRwn (2 ).Lls0axdD ()
+            return f"{AQWcgSV1 }{YVqskJAM }"
         return None 
 
         # --- NEW: normalize subject and map common synonyms ---
-    def MGFdOlsl (u9KlcSVz ):
-        if not u9KlcSVz :
+    def bXoeNNsg (alKwuntH ):
+        if not alKwuntH :
             return None 
             # remove diacritics, collapse whitespace, lowercase
-        ujXgGKt1 =unicodedata .e5S5mmnr ('NFKD',u9KlcSVz )
-        ujXgGKt1 =''.ZekTGKCR (Nh8Zdd6J for Nh8Zdd6J in ujXgGKt1 if not unicodedata .eAGnv0C2 (Nh8Zdd6J ))
-        ujXgGKt1 =re .TK941fkh (r'\s+',' ',ujXgGKt1 ).xZd2cl2Z ()
-        return ujXgGKt1 
+        hTE9Ycdt =unicodedata .IMgOqNhj ('NFKD',alKwuntH )
+        hTE9Ycdt =''.NmbdZurb (pDpp8aAR for pDpp8aAR in hTE9Ycdt if not unicodedata .gMEmHKSz (pDpp8aAR ))
+        hTE9Ycdt =re .osGWSfk3 (r'\s+',' ',hTE9Ycdt ).Lls0axdD ()
+        return hTE9Ycdt 
 
         # --- REPLACED/EXTENDED: try targeted queries and DuckDuckGo + english variants ---
-    def uizVF6YG (u9KlcSVz ):
+    def LzwZvbWl (alKwuntH ):
         """
         Try multiple queries (wiki variants + targeted 'Länge' queries + DuckDuckGo snippets)
         Return tuple (measurement_string, source_text_short) or (None, None).
         """
-        if not u9KlcSVz :
+        if not alKwuntH :
             return None ,None 
 
-        fZhMMFF8 =MGFdOlsl (u9KlcSVz )
+        KiJOeIfS =bXoeNNsg (alKwuntH )
         # build candidate queries (DE + EN) and synonyms
-        MiPFdzvy =[]
+        JNJvD8C1 =[]
         # base
-        MiPFdzvy .x45v63Zs (u9KlcSVz )
-        MiPFdzvy .x45v63Zs (fZhMMFF8 )
+        JNJvD8C1 .gmQPJ3CV (alKwuntH )
+        JNJvD8C1 .gmQPJ3CV (KiJOeIfS )
         # German targeted forms
-        MiPFdzvy +=[
-        f"{u9KlcSVz } Länge",
-        f"Länge {u9KlcSVz }",
-        f"Durchschnittliche Länge {u9KlcSVz }",
-        f"Durchschnittliche Länge {fZhMMFF8 }",
-        f"{u9KlcSVz } Größe",
+        JNJvD8C1 +=[
+        f"{alKwuntH } Länge",
+        f"Länge {alKwuntH }",
+        f"Durchschnittliche Länge {alKwuntH }",
+        f"Durchschnittliche Länge {KiJOeIfS }",
+        f"{alKwuntH } Größe",
         ]
         # synonyms for common terms
-        if re .ELFlhVeN (r'\bauto\b',fZhMMFF8 ,Q0swAgoP =re .e9ZpexQU )or re .ELFlhVeN (r'\bwagen\b',fZhMMFF8 ,Q0swAgoP =re .e9ZpexQU ):
-            MiPFdzvy +=["Auto","Personenkraftwagen","PKW","Durchschnittliche Länge Auto","Durchschnittliche Länge PKW"]
-        if re .ELFlhVeN (r'\brüssel\b',fZhMMFF8 ,Q0swAgoP =re .e9ZpexQU ):
-            MiPFdzvy +=["Rüssel","Elefantenrüssel","Rüssel Elefant Länge"]
+        if re .wt4L20KJ (r'\bauto\b',KiJOeIfS ,G0cUW5Uq =re .XT37wjxp )or re .wt4L20KJ (r'\bwagen\b',KiJOeIfS ,G0cUW5Uq =re .XT37wjxp ):
+            JNJvD8C1 +=["Auto","Personenkraftwagen","PKW","Durchschnittliche Länge Auto","Durchschnittliche Länge PKW"]
+        if re .wt4L20KJ (r'\brüssel\b',KiJOeIfS ,G0cUW5Uq =re .XT37wjxp ):
+            JNJvD8C1 +=["Rüssel","Elefantenrüssel","Rüssel Elefant Länge"]
 
             # english fallbacks
-        MiPFdzvy +=[
-        f"{fZhMMFF8 } length",
+        JNJvD8C1 +=[
+        f"{KiJOeIfS } length",
         "car length",
         "average car length",
         "typical car length",
@@ -429,235 +458,235 @@ if oicMIAAD =="2":
         "length of elephant trunk"
         ]
 
-        DJL62S5D =set ()
+        ZSJjOsfR =set ()
         # try Wikipedia page extracts first (better chance to contain numbers)
-        for bIbMgeXz in MiPFdzvy :
-            if not bIbMgeXz or bIbMgeXz in DJL62S5D :
+        for GO856sYT in JNJvD8C1 :
+            if not GO856sYT or GO856sYT in ZSJjOsfR :
                 continue 
-            DJL62S5D .oIwyVR5V (bIbMgeXz )
+            ZSJjOsfR .Jl9dPJ8N (GO856sYT )
             try :
-                ABNbKOhK =fetch_wikipedia_page_text (bIbMgeXz )
-            except MUiXSBLW :
-                ABNbKOhK =None 
-            if ABNbKOhK :
-                f5Nz6dDr =zOPmHwpm (ABNbKOhK )
-                if f5Nz6dDr :
-                    return f5Nz6dDr ,f"Wikipedia page: {bIbMgeXz }"
+                tAuHLmdR =fetch_wikipedia_page_text (GO856sYT )
+            except wT3SaHXi :
+                tAuHLmdR =None 
+            if tAuHLmdR :
+                ormsc39m =IcqwncWi (tAuHLmdR )
+                if ormsc39m :
+                    return ormsc39m ,f"Wikipedia page: {GO856sYT }"
                     # fallback to summary if page_text didn't exist
             try :
-                lgS6waFp =fetch_wikipedia_summary (bIbMgeXz )
-            except MUiXSBLW :
-                lgS6waFp =None 
-            if lgS6waFp :
-                f5Nz6dDr =zOPmHwpm (lgS6waFp )
-                if f5Nz6dDr :
-                    return f5Nz6dDr ,f"Wikipedia summary: {bIbMgeXz }"
+                vjdeK1uc =fetch_wikipedia_summary (GO856sYT )
+            except wT3SaHXi :
+                vjdeK1uc =None 
+            if vjdeK1uc :
+                ormsc39m =IcqwncWi (vjdeK1uc )
+                if ormsc39m :
+                    return ormsc39m ,f"Wikipedia summary: {GO856sYT }"
 
                     # also try broader Wikipedia variants (existing helper)
         try :
-            bj57a0bo =fetch_wikipedia_variants (u9KlcSVz )
-        except MUiXSBLW :
-            bj57a0bo =None 
-        if bj57a0bo :
-            f5Nz6dDr =zOPmHwpm (bj57a0bo )
-            if f5Nz6dDr :
-                return f5Nz6dDr ,"Wikipedia (variant)"
+            T0rKdORk =fetch_wikipedia_variants (alKwuntH )
+        except wT3SaHXi :
+            T0rKdORk =None 
+        if T0rKdORk :
+            ormsc39m =IcqwncWi (T0rKdORk )
+            if ormsc39m :
+                return ormsc39m ,"Wikipedia (variant)"
 
                 # lastly try DuckDuckGo search snippets for a few prioritized queries
-        for bIbMgeXz in [f"{u9KlcSVz } Länge",f"{fZhMMFF8 } length","durchschnittliche Länge Auto","average car length","elephant trunk length"]:
+        for GO856sYT in [f"{alKwuntH } Länge",f"{KiJOeIfS } length","durchschnittliche Länge Auto","average car length","elephant trunk length"]:
             try :
-                VkTcf0UP =u4lDp9hu (bIbMgeXz )
-            except MUiXSBLW :
-                VkTcf0UP =None 
-            if VkTcf0UP and hbW0l36U (VkTcf0UP ,str ):
-                f5Nz6dDr =zOPmHwpm (VkTcf0UP )
-                if f5Nz6dDr :
-                    Hyp1Hvc8 ="DuckDuckGo: "+bIbMgeXz 
-                    return f5Nz6dDr ,Hyp1Hvc8 
+                EDuNo8ss =JYezLFom (GO856sYT )
+            except wT3SaHXi :
+                EDuNo8ss =None 
+            if EDuNo8ss and It6s7go3 (EDuNo8ss ,str ):
+                ormsc39m =IcqwncWi (EDuNo8ss )
+                if ormsc39m :
+                    dJE25XLt ="DuckDuckGo: "+GO856sYT 
+                    return ormsc39m ,dJE25XLt 
 
         return None ,None 
 
         # Funktion zur Beantwortung von Fragen
-    if VGl5VGLn !=False :
-        VGl5VGLn ="--gibberlink=true"in sys .jPa0fvvK # oder False, je nach Bedarf
+    if ml6nJfyC !=False :
+        ml6nJfyC ="--gibberlink=true"in sys .lBQBIWfd # oder False, je nach Bedarf
 
 
-    def ylxkNfsA (paTVXZbF ):
-        print (paTVXZbF )
+    def CGPfCvxa (IbktzBKM ):
+        print (IbktzBKM )
         try :
         # quick math detection: evaluate simple arithmetic expressions even without "Berechne"
         # matches inputs containing digits and math operators (e.g. "2*4", "12 / (3+1)")
-            if re .ELFlhVeN (r'\d',paTVXZbF )and re .ELFlhVeN (r'[\+\-\*\/\^()]',paTVXZbF ):
+            if re .wt4L20KJ (r'\d',IbktzBKM )and re .wt4L20KJ (r'[\+\-\*\/\^()]',IbktzBKM ):
                 try :
                 # use existing evaluate_math_expression when available
-                    Of2Sjtwq =EJ5RZnjL (paTVXZbF )
-                    return Of2Sjtwq ,{"tokens":[],"note":"evaluated-as-math"}
-                except MUiXSBLW :
+                    ib5tUHvM =ekVR3aZ2 (IbktzBKM )
+                    return ib5tUHvM ,{"tokens":[],"note":"evaluated-as-math"}
+                except wT3SaHXi :
                 # fallback: continue to NLP if evaluation fails
                     pass 
 
                     # Gibberlink aktivieren, wenn EXPERIMENTAL-Modus an ist
 
                     # NEW: Definition/Übersetzungsanfragen (Wortbedeutung)
-            if re .ELFlhVeN (r'\bwas\s+bedeutet\b|\bwas\s+heißt\b|\bbedeutung\s+von\b',paTVXZbF ,Q0swAgoP =re .e9ZpexQU ):
-                tKp1yC3V =extract_subject_from_question (paTVXZbF )
-                if tKp1yC3V :
+            if re .wt4L20KJ (r'\bwas\s+bedeutet\b|\bwas\s+heißt\b|\bbedeutung\s+von\b',IbktzBKM ,G0cUW5Uq =re .XT37wjxp ):
+                F9MNH10q =extract_subject_from_question (IbktzBKM )
+                if F9MNH10q :
                 # prefer wiktionary, fallback to wikipedia summary/page
-                    rKsMZKCx =fetch_wiktionary_definition (tKp1yC3V )
-                    if not rKsMZKCx :
+                    WNXpiLf7 =fetch_wiktionary_definition (F9MNH10q )
+                    if not WNXpiLf7 :
                     # try wikipedia page text then summary
-                        rKsMZKCx =fetch_wikipedia_page_text (tKp1yC3V )or fetch_wikipedia_summary (tKp1yC3V )
-                    if rKsMZKCx :
-                        t4YULAPo =rKsMZKCx .AAikQ8lA ("\n\n")[0 ].xZd2cl2Z ()
-                        return f"'{tKp1yC3V }' bedeutet:\n{t4YULAPo }",{"tokens":[],"note":"dictionary"}
+                        WNXpiLf7 =fetch_wikipedia_page_text (F9MNH10q )or fetch_wikipedia_summary (F9MNH10q )
+                    if WNXpiLf7 :
+                        CtC6X9lK =WNXpiLf7 .EI1g74Xy ("\n\n")[0 ].Lls0axdD ()
+                        return f"'{F9MNH10q }' bedeutet:\n{CtC6X9lK }",{"tokens":[],"note":"dictionary"}
                 return "Dazu konnte ich leider keine Definition finden.",{"tokens":[],"note":"no-definition"}
 
                 # REPLACED: improved measurement question handling
-            if re .ELFlhVeN (r'\bwie\s+(lang|groß|hoch|schwer|alt)\b',paTVXZbF ,Q0swAgoP =re .e9ZpexQU ):
-                u9KlcSVz =extract_subject_from_question (paTVXZbF )
+            if re .wt4L20KJ (r'\bwie\s+(lang|groß|hoch|schwer|alt)\b',IbktzBKM ,G0cUW5Uq =re .XT37wjxp ):
+                alKwuntH =extract_subject_from_question (IbktzBKM )
                 # first try direct wiki variants (keeps previous behavior)
-                lgS6waFp =fetch_wikipedia_variants (u9KlcSVz )if u9KlcSVz else None 
-                if lgS6waFp :
-                    f5Nz6dDr =zOPmHwpm (lgS6waFp )
-                    if f5Nz6dDr :
-                        dkcYPbhq =u9KlcSVz or "das Objekt"
-                        return f"Der {dkcYPbhq } ist ungefähr {f5Nz6dDr }. (Quelle: Wikipedia)",{"tokens":[],"note":"wikipedia-measurement"}
+                vjdeK1uc =fetch_wikipedia_variants (alKwuntH )if alKwuntH else None 
+                if vjdeK1uc :
+                    ormsc39m =IcqwncWi (vjdeK1uc )
+                    if ormsc39m :
+                        gFIALebi =alKwuntH or "das Objekt"
+                        return f"Der {gFIALebi } ist ungefähr {ormsc39m }. (Quelle: Wikipedia)",{"tokens":[],"note":"wikipedia-measurement"}
                         # if initial wiki summary didn't contain measurement, do targeted search attempts
-                f5Nz6dDr ,TN50HTYB =uizVF6YG (u9KlcSVz )
-                if f5Nz6dDr :
-                    dkcYPbhq =u9KlcSVz or "das Objekt"
-                    return f"Der {dkcYPbhq } ist ungefähr {f5Nz6dDr }. (Quelle: {TN50HTYB })",{"tokens":[],"note":"web-measurement"}
+                ormsc39m ,ite7EdCF =LzwZvbWl (alKwuntH )
+                if ormsc39m :
+                    gFIALebi =alKwuntH or "das Objekt"
+                    return f"Der {gFIALebi } ist ungefähr {ormsc39m }. (Quelle: {ite7EdCF })",{"tokens":[],"note":"web-measurement"}
                     # fallback: if we had a wiki without measurement, return it (better than nothing)
-                if lgS6waFp :
-                    dkcYPbhq =u9KlcSVz or "das Objekt"
-                    return f"Ich habe zu '{dkcYPbhq }' folgende Info auf Wikipedia gefunden:\n{lgS6waFp }",{"tokens":[],"note":"wikipedia-summary"}
+                if vjdeK1uc :
+                    gFIALebi =alKwuntH or "das Objekt"
+                    return f"Ich habe zu '{gFIALebi }' folgende Info auf Wikipedia gefunden:\n{vjdeK1uc }",{"tokens":[],"note":"wikipedia-summary"}
                     # nothing found -> fall back to general NLP below (or inform about missing data)
                 return "Dazu habe ich leider keine eindeutige Längenangabe gefunden.",{"tokens":[],"note":"no-measurement"}
 
                 # Mathematischer Ausdruck
-            if paTVXZbF .n8n8FMRK ("Berechne"):
-                OMXagALU =paTVXZbF .AAikQ8lA ("Berechne")[-1 ].xZd2cl2Z ()
-                return EJ5RZnjL (OMXagALU ),None 
+            if IbktzBKM .AJf23Z0Y ("Berechne"):
+                jXexuAdD =IbktzBKM .EI1g74Xy ("Berechne")[-1 ].Lls0axdD ()
+                return ekVR3aZ2 (jXexuAdD ),None 
 
                 # VS Code öffnen
-            if paTVXZbF .HHv5Lm50 ()in ["öffne vs code","code"]:
-                return SBYoLiUb (),None 
+            if IbktzBKM .WQxZWrkw ()in ["öffne vs code","code"]:
+                return iujXM5Ao (),None 
 
                 # Websuche
-            if paTVXZbF .HHv5Lm50 ().n8n8FMRK ("suche nach"):
-                BQ8H1yQa =paTVXZbF .AAikQ8lA ("suche nach")[-1 ].xZd2cl2Z ()
-                return u4lDp9hu (BQ8H1yQa ),None 
+            if IbktzBKM .WQxZWrkw ().AJf23Z0Y ("suche nach"):
+                yrrV2DIj =IbktzBKM .EI1g74Xy ("suche nach")[-1 ].Lls0axdD ()
+                return JYezLFom (yrrV2DIj ),None 
 
                 # Begrüßung
-            YTyIWyX4 =["hallo","hi","hey","guten tag"]
-            if paTVXZbF .HHv5Lm50 ()in YTyIWyX4 :
+            Mhkbw9Oj =["hallo","hi","hey","guten tag"]
+            if IbktzBKM .WQxZWrkw ()in Mhkbw9Oj :
                 return "Hallo! Wie kann ich Ihnen helfen?",None 
 
                 # NLP-Modell
-            aWi6wg9t =hBXsvWcT .Q7C25tRk ([paTVXZbF ])
-            keNRWsw5 =EXTaWmtO .SAw2Tvwr (aWi6wg9t )[0 ]
-            o9AZHaef =GIE5dgz3 (paTVXZbF )
+            xbkja7nZ =RGpmHwlH .Hl3bZh7o ([IbktzBKM ])
+            ee3XqTlu =Q3OIrOPk .JmPHxaQ9 (xbkja7nZ )[0 ]
+            vWCUVgz1 =QPGwrvxu (IbktzBKM )
 
             # Try to enrich the model response with a deterministic Wikipedia summary
             try :
-                u9KlcSVz =extract_subject_from_question (paTVXZbF )
+                alKwuntH =extract_subject_from_question (IbktzBKM )
                 # do not attempt wiki if subject extraction failed (or was math)
-                lgS6waFp =fetch_wikipedia_summary (u9KlcSVz )if u9KlcSVz else None 
-                if lgS6waFp :
+                vjdeK1uc =fetch_wikipedia_summary (alKwuntH )if alKwuntH else None 
+                if vjdeK1uc :
                 # append but avoid duplicating if already included
-                    if hbW0l36U (keNRWsw5 ,str )and "[Wikipedia]"not in keNRWsw5 :
-                        keNRWsw5 =(keNRWsw5 or "")+"\n\n[Wikipedia]: "+lgS6waFp 
-            except MUiXSBLW :
+                    if It6s7go3 (ee3XqTlu ,str )and "[Wikipedia]"not in ee3XqTlu :
+                        ee3XqTlu =(ee3XqTlu or "")+"\n\n[Wikipedia]: "+vjdeK1uc 
+            except wT3SaHXi :
             # degrade gracefully: return model response without augmentation
                 pass 
 
-            return keNRWsw5 ,o9AZHaef 
+            return ee3XqTlu ,vWCUVgz1 
 
-        except MUiXSBLW as cGG0cYe6 :
-            return f"Fehler bei der Verarbeitung der Frage: {str (cGG0cYe6 )}",None 
+        except wT3SaHXi as MJ0QaHx4 :
+            return f"Fehler bei der Verarbeitung der Frage: {str (MJ0QaHx4 )}",None 
 
             # Funktion zum Hinzufügen von neuen Fragen und Antworten
-    def QyDjDHig (paTVXZbF ,kZIgedhz ,G1qSicPh ='training_data.json'):
-        global PHChUi02 
-        thDyuDNW ={"question":paTVXZbF ,"answer":kZIgedhz }
-        PHChUi02 .x45v63Zs (thDyuDNW )
+    def qtv3TMwa (IbktzBKM ,WrDXu9Ah ,ruyQgtNB ='training_data.json'):
+        global q1LuUTJa 
+        bbmv3AIQ ={"question":IbktzBKM ,"answer":WrDXu9Ah }
+        q1LuUTJa .gmQPJ3CV (bbmv3AIQ )
 
-        with open (G1qSicPh ,'w',IJDWbzFe ='utf-8')as qiXZJZPF :
-            json .JhENGPj5 (PHChUi02 ,qiXZJZPF ,XigD4yiK =False ,k014GC0u =4 )
+        with open (ruyQgtNB ,'w',qdqRAwTY ='utf-8')as VASkKN1w :
+            json .niP0Q3uW (q1LuUTJa ,VASkKN1w ,Dpgm5LYr =False ,RKVNeTyy =4 )
 
             # Modelle neu trainieren
-        LunLS2R9 =[data ['question']for data in PHChUi02 ]
-        E8Lepu0y =hBXsvWcT .RiUuWvfn (LunLS2R9 )
-        nGlP19CX =[data ['answer']for data in PHChUi02 ]
-        EXTaWmtO .YjYoQPwg (E8Lepu0y ,nGlP19CX )
+        ZW72dwWN =[data ['question']for data in q1LuUTJa ]
+        wsn1lJXb =RGpmHwlH .vrXobOww (ZW72dwWN )
+        Mi2cexaI =[data ['answer']for data in q1LuUTJa ]
+        Q3OIrOPk .I25oaVPG (wsn1lJXb ,Mi2cexaI )
 
         # Automatisches Lernen aus Interaktionen
-    def WWe7d7F4 (HPgPPAEj ,Tt6qVpJn ):
-        QyDjDHig (HPgPPAEj ,Tt6qVpJn )
-    from pgPed4U1 .djUaXVAG import QLabel ,QVBoxLayout ,QDialog 
-    from pgPed4U1 .GfvuIcVJ import QPixmap 
+    def Om4atwT0 (JT2Vtu3G ,RyIWTnR9 ):
+        qtv3TMwa (JT2Vtu3G ,RyIWTnR9 )
+    from r0NjvBIy .x4lwbTf2 import QLabel ,QVBoxLayout ,QDialog 
+    from r0NjvBIy .y4ENfkVB import QPixmap 
 
-    def aiHXC64c (mALN8sb5 ):
-        b6vhIGNF =QDialog ()
-        b6vhIGNF .dlHXFcaV ("Mathematische Grafik")
-        VhIyaQnN =QVBoxLayout ()
-        iScIBZGu =QLabel ()
-        fas74StV =QPixmap (mALN8sb5 )
-        iScIBZGu .x2CdMEAh (fas74StV )
-        VhIyaQnN .aa9E8qou (iScIBZGu )
-        b6vhIGNF .qeT6U0En (VhIyaQnN )
-        b6vhIGNF .mfExM1l9 ()
+    def nETi1472 (jP0NYsrZ ):
+        yoTQcZqW =QDialog ()
+        yoTQcZqW .jA6ZJVLA ("Mathematische Grafik")
+        I7bUAbAV =QVBoxLayout ()
+        A69i8P1J =QLabel ()
+        IHKBIxRM =QPixmap (jP0NYsrZ )
+        A69i8P1J .XgCRlUvv (IHKBIxRM )
+        I7bUAbAV .ELkmesmI (A69i8P1J )
+        yoTQcZqW .ao76oBXe (I7bUAbAV )
+        yoTQcZqW .JxIMYFoz ()
 
         # Funktion zur Überprüfung und Verbesserung der Antwort
-    def Midz8NQp (HPgPPAEj ,keNRWsw5 ):
-        print (f"Chatbot: {keNRWsw5 }")
-        dS6BseZF =input ("War die Antwort korrekt? (ja/nein): ").xZd2cl2Z ().HHv5Lm50 ()
-        if dS6BseZF =="nein":
-            eB56LbuC =input ("Wie hätte ich antworten sollen? ")
-            WWe7d7F4 (HPgPPAEj ,eB56LbuC )
-            return eB56LbuC 
-        return keNRWsw5 
+    def vYfCGviW (JT2Vtu3G ,ee3XqTlu ):
+        print (f"Chatbot: {ee3XqTlu }")
+        BQNPi6JA =input ("War die Antwort korrekt? (ja/nein): ").Lls0axdD ().WQxZWrkw ()
+        if BQNPi6JA =="nein":
+            bZ5eshBx =input ("Wie hätte ich antworten sollen? ")
+            Om4atwT0 (JT2Vtu3G ,bZ5eshBx )
+            return bZ5eshBx 
+        return ee3XqTlu 
 
         # Chatbot testen
     if __name__ =="__main__":
         while True :
-            HPgPPAEj =input ("Du: ")
-            if HPgPPAEj .HHv5Lm50 ()in ["exit","quit"]:
+            JT2Vtu3G =input ("Du: ")
+            if JT2Vtu3G .WQxZWrkw ()in ["exit","quit"]:
                 break 
-            elif HPgPPAEj .HHv5Lm50 ().n8n8FMRK ("zeige mir eine parabel"):
-                mALN8sb5 =okHLgufK ("parabel")
-                if mALN8sb5 :
-                    aiHXC64c (mALN8sb5 )
+            elif JT2Vtu3G .WQxZWrkw ().AJf23Z0Y ("zeige mir eine parabel"):
+                jP0NYsrZ =Vkw0ujsQ ("parabel")
+                if jP0NYsrZ :
+                    nETi1472 (jP0NYsrZ )
                     print ("Hier ist die Grafik der Parabel.")
                     continue # Springe zur nächsten Eingabe
 
-            keNRWsw5 ,o9AZHaef =ylxkNfsA (HPgPPAEj )
+            ee3XqTlu ,vWCUVgz1 =CGPfCvxa (JT2Vtu3G )
 
-            if keNRWsw5 is None :
+            if ee3XqTlu is None :
                 print ("Ich habe deine Frage nicht verstanden. Wie sollte ich darauf antworten?")
-                sxcuruLe =input ("Neue Antwort: ")
-                WWe7d7F4 (HPgPPAEj ,sxcuruLe )
-                keNRWsw5 =sxcuruLe 
+                R6BuoO8L =input ("Neue Antwort: ")
+                Om4atwT0 (JT2Vtu3G ,R6BuoO8L )
+                ee3XqTlu =R6BuoO8L 
             else :
-                keNRWsw5 =Midz8NQp (HPgPPAEj ,keNRWsw5 )
+                ee3XqTlu =vYfCGviW (JT2Vtu3G ,ee3XqTlu )
 
-            print ("Chatbot:",keNRWsw5 )
-            if VGl5VGLn :
-                KtOPPWyi (keNRWsw5 )
+            print ("Chatbot:",ee3XqTlu )
+            if ml6nJfyC :
+                c9yoaxLU (ee3XqTlu )
                 print ("Gibberlink-Signal gesendet.",None )
-            print ("NLP Info:",o9AZHaef )
+            print ("NLP Info:",vWCUVgz1 )
 
-elif oicMIAAD =="1":
+elif KOVUiEI9 =="1":
     while True :
-        d0UNbkX1 =input ("Enter your message: ")
-        bdsZCRvt =Fo6j1qBb .gKHGPKxD .qMrktLK4 .mTimy9Nk (
-        JGBDpEXv =[
+        JkhyMkAj =input ("Enter your message: ")
+        MvftyOAF =fJYArGFY .S9xeXuf1 .IZwIJm5s .pC1GbEDU (
+        v0wZyqGM =[
         {
         "role":"user",
-        "content":d0UNbkX1 ,
+        "content":JkhyMkAj ,
         }
         ],
-        EXTaWmtO ="llama-3.3-70b-versatile",
+        Q3OIrOPk ="llama-3.3-70b-versatile",
         )
 
-        print (bdsZCRvt .Z5J79i9C [0 ].x0OJXps2 .Tai7lnne )
+        print (MvftyOAF .wtit6gg5 [0 ].R5nxAufw .jGuRasqP )
