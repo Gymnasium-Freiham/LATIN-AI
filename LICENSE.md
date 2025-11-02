@@ -1,5 +1,7 @@
 LATIN-AI Software – License Terms
+
 Copyright (C) 2025 Adam Basly
+
 This software and all associated files ("LATIN-AI") are protected by copyright. Any use, reproduction, distribution, modification, or publication is permitted only under the following conditions:
 ### 1. Usage Rights
 Permission to use this software is granted solely at the discretion of the copyright holder. The author reserves the right to revoke usage rights from any individual or entity at any time, without prior notice or justification.
