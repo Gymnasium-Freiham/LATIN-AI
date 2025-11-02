@@ -1,594 +1,663 @@
-#main.py
-activation=True
-import subprocess
+
+###DEOBFUSCATE_START###
 import sys
-import os
-import unicodedata
-sys.path.insert(0, os.path.dirname(__file__))
-
-if activation==False:
-    sys.exit("Error-code: 0x43R43DESACTIV7ATED36")
-
-# Installiere notwendige Bibliotheken
-def install(package):
-    subprocess.check_call([sys.executable, "-m", "pip", "install", package])
-
-install("nltk")
-install("scikit-learn")
-install("numpy")
-install("requests")
-install("groq")
-install("PyQt5")
-try:
-    import torch
-except:
-    install("torch")
-install("matplotlib")
-GIBBERLINK_EXPERIMENTAL = True
-try:
-    install("simpleaudio")
-except:
-    GIBBERLINK_EXPERIMENTAL=False
-
-from urllib.parse import quote
-if GIBBERLINK_EXPERIMENTAL != False:
-    import simpleaudio as sa
-from groq import Groq
 import json
-import nltk
-import numpy as np
-import random
-from sklearn.feature_extraction.text import TfidfVectorizer
-from sklearn.svm import SVC
+import tempfile
 import os
-import requests
-import torch
-import torch.nn as nn
-from PyQt5.QtWidgets import QApplication
-import os
+import subprocess
+import urllib.request
+
+def load_mapping(source_type, source_value):
+    if source_type == "path":
+        with open(source_value, "r", encoding="utf-8") as f:
+            return json.load(f)
+    elif source_type == "url":
+        with urllib.request.urlopen(source_value) as response:
+            return json.loads(response.read().decode("utf-8"))
+    else:
+        raise ValueError("Ungültiger Typ für --deobfuscate: 'path' oder 'url' erwartet.")
+
+# Argumente prüfen
+if "--deobfuscate" in sys.argv:
+    try:
+        idx = sys.argv.index("--deobfuscate")
+        source_type = sys.argv[idx + 1]
+        source_value = sys.argv[idx + 2]
+        mapping = load_mapping(source_type, source_value)
+    except Exception as e:
+        print("❌ Fehler beim Laden der Mapping-Datei:", e)
+        sys.exit(1)
+else:
+    # Fallback: GitHub verwenden
+    try:
+        github_url = "https://raw.githubusercontent.com/Gymnasium-Freiham/LATIN-AI/refs/heads/main/deobfuscation_mappings.txt"
+        mapping = load_mapping("url", github_url)
+        print("ℹ️ Mapping von GitHub geladen.")
+    except Exception as e:
+        print("❌ Fehler beim Laden der GitHub-Mapping-Datei:", e)
+        sys.exit(1)
+
+# Originalcode laden
+with open(__file__, "r", encoding="utf-8") as f:
+    original_code = f.read()
+
+start_marker = "###DEOBFUSCATE_START###"
+end_marker = "###DEOBFUSCATE_END###"
+if start_marker in original_code and end_marker in original_code:
+    stripped_code = original_code.split(start_marker)[0] + original_code.split(end_marker)[-1]
+else:
+    stripped_code = original_code
+
+# Deobfuscation anwenden
+for k, v in mapping.items():
+    stripped_code = stripped_code.replace(v, k)
+
+# Temporäre Datei ausführen
+with tempfile.NamedTemporaryFile("w", delete=False, suffix=".py", encoding="utf-8") as temp:
+    temp.write(stripped_code)
+    temp_path = temp.name
+
+exit_code = subprocess.run([sys.executable, temp_path]).returncode
+
+try:
+    os.remove(temp_path)
+except Exception:
+    pass
+
+sys.exit(exit_code)
+###DEOBFUSCATE_END###
+
+#main.py
+MNldDInq =True 
+import subprocess 
+import sys 
+import os 
+import unicodedata 
+sys .PmjYepgU .Gl9lVWQV (0 ,os .PmjYepgU .vrU2HT7Z (UITOBXkc ))
+
+if MNldDInq ==False :
+    sys .bfBVKETU ("Error-code: 0x43R43DESACTIV7ATED36")
+
+    # Installiere notwendige Bibliotheken
+def CbuQCbMT (qFNEIMIm ):
+    subprocess .VsjKCH4f ([sys .tTYwGr4C ,"-m","pip","install",qFNEIMIm ])
+
+CbuQCbMT ("nltk")
+CbuQCbMT ("scikit-learn")
+CbuQCbMT ("numpy")
+CbuQCbMT ("requests")
+CbuQCbMT ("groq")
+CbuQCbMT ("PyQt5")
+try :
+    import torch 
+except :
+    CbuQCbMT ("torch")
+CbuQCbMT ("matplotlib")
+VGl5VGLn =True 
+try :
+    CbuQCbMT ("simpleaudio")
+except :
+    VGl5VGLn =False 
+
+from NFXVQCHd .bOPVT8Ux import quote 
+if VGl5VGLn !=False :
+    import simpleaudio as sa 
+from groq import Groq 
+import json 
+import nltk 
+import numpy as np 
+import random 
+from gLc1T3Y1 .dr3OQSaO .bYm31FIV import TfidfVectorizer 
+from gLc1T3Y1 .D7cGSJk9 import SVC 
+import os 
+import requests 
+import torch 
+import torch .nn as nn 
+from pgPed4U1 .djUaXVAG import QApplication 
+import os 
 
 # Lade NLTK-Daten
-nltk.download('punkt')
-nltk.download('wordnet')
-nltk.download('averaged_perceptron_tagger')
-nltk.download('maxent_ne_chunker')
-nltk.download('words')
-nltk.download('averaged_perceptron_tagger_eng')
-nltk.download('maxent_ne_chunker_tab')
-client = Groq(api_key="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")
+nltk .uHSbpQjP ('punkt')
+nltk .uHSbpQjP ('wordnet')
+nltk .uHSbpQjP ('averaged_perceptron_tagger')
+nltk .uHSbpQjP ('maxent_ne_chunker')
+nltk .uHSbpQjP ('words')
+nltk .uHSbpQjP ('averaged_perceptron_tagger_eng')
+nltk .uHSbpQjP ('maxent_ne_chunker_tab')
+Fo6j1qBb =Groq (A5y6mnA6 ="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")
 
-from nltk.tokenize import word_tokenize
-from nltk.stem import PorterStemmer
-from nltk.stem import WordNetLemmatizer
-from nltk import pos_tag, ne_chunk
+from nltk .cTJ1fDuh import word_tokenize 
+from nltk .Xhw7iAQ9 import PorterStemmer 
+from nltk .Xhw7iAQ9 import WordNetLemmatizer 
+from nltk import pos_tag ,ne_chunk 
 
-from data import load_training_data, load_and_append_data, fetch_wikipedia_summary, fetch_wikipedia_variants, fetch_wikipedia_page_text, fetch_wiktionary_definition, extract_subject_from_question
+from data import load_training_data ,load_and_append_data ,fetch_wikipedia_summary ,fetch_wikipedia_variants ,fetch_wikipedia_page_text ,fetch_wiktionary_definition ,extract_subject_from_question 
 
 # Setze Seed für Reproduzierbarkeit
-def set_seed(seed):
-    np.random.seed(seed)
-    random.seed(seed)
-    torch.manual_seed(seed)
+def GgbTHuVT (pjj5FFUt ):
+    np .random .pjj5FFUt (pjj5FFUt )
+    random .pjj5FFUt (pjj5FFUt )
+    torch .omYGcOlt (pjj5FFUt )
 
-set_seed(42)  # Beispiel-Seed
+GgbTHuVT (42 )# Beispiel-Seed
 
 # Lade das Trainingsdatenset aus der JSON-Datei
-training_data = load_training_data()
-training_data = load_and_append_data(training_data, './assets/comics.json', 'comicSeries')
-training_data = load_and_append_data(training_data, './assets/dishes.json', 'dishes')
-training_data = load_and_append_data(training_data, './assets/books.json', 'books')
-training_data = load_and_append_data(training_data, './assets/movies.json', 'movies')
-training_data = load_and_append_data(training_data, './assets/fruits.json', 'fruits')
-training_data = load_and_append_data(training_data, './assets/animals.json', 'animals')
-training_data = load_and_append_data(training_data, './assets/windows.json', 'windowsVersions')
-training_data = load_and_append_data(training_data, './assets/deutsch6klassebayern.json', 'deutsch6klassebayern')
-training_data = load_and_append_data(training_data, './assets/superMarioGames.json', 'superMarioGames')
-training_data = load_and_append_data(training_data, './assets/informatik6klassebayern.json', 'informatik6klassebayern')
-training_data = load_and_append_data(training_data, './assets/mathematik6klassebayern.json', 'mathematik6klassebayern')
+PHChUi02 =load_training_data ()
+PHChUi02 =load_and_append_data (PHChUi02 ,'./assets/comics.json','comicSeries')
+PHChUi02 =load_and_append_data (PHChUi02 ,'./assets/dishes.json','dishes')
+PHChUi02 =load_and_append_data (PHChUi02 ,'./assets/books.json','books')
+PHChUi02 =load_and_append_data (PHChUi02 ,'./assets/movies.json','movies')
+PHChUi02 =load_and_append_data (PHChUi02 ,'./assets/fruits.json','fruits')
+PHChUi02 =load_and_append_data (PHChUi02 ,'./assets/animals.json','animals')
+PHChUi02 =load_and_append_data (PHChUi02 ,'./assets/windows.json','windowsVersions')
+PHChUi02 =load_and_append_data (PHChUi02 ,'./assets/deutsch6klassebayern.json','deutsch6klassebayern')
+PHChUi02 =load_and_append_data (PHChUi02 ,'./assets/superMarioGames.json','superMarioGames')
+PHChUi02 =load_and_append_data (PHChUi02 ,'./assets/informatik6klassebayern.json','informatik6klassebayern')
+PHChUi02 =load_and_append_data (PHChUi02 ,'./assets/mathematik6klassebayern.json','mathematik6klassebayern')
 
-def install_addon_datasets(training_data, addons_dir='./addons'):
+def aG0czq82 (PHChUi02 ,y4SdDlTI ='./addons'):
     """
     Scan addons_dir for .json or .mintaiaddon files that contain dataset JSON and append them.
     Uses load_and_append_data which will parse the file and append heuristically.
     """
-    if not os.path.isdir(addons_dir):
-        return training_data
-    for fname in sorted(os.listdir(addons_dir)):
-        if not (fname.lower().endswith('.json') or fname.lower().endswith('.mintaiaddon')):
-            continue
-        path = os.path.join(addons_dir, fname)
-        try:
-            # try to append the file as JSON dataset; load_and_append_data will open and infer structure
-            training_data = load_and_append_data(training_data, path, key=None)
-            print(f"Addon-Dataset angehängt: {path}")
-        except Exception as e:
-            print(f"Fehler beim Anhängen von Addon {path}: {e}")
-    return training_data
+    if not os .PmjYepgU .BRQcRAv4 (y4SdDlTI ):
+        return PHChUi02 
+    for b6IUYFU0 in y2B3kTqq (os .CeeuyYT9 (y4SdDlTI )):
+        if not (b6IUYFU0 .HHv5Lm50 ().xwTGWH8w ('.json')or b6IUYFU0 .HHv5Lm50 ().xwTGWH8w ('.mintaiaddon')):
+            continue 
+        PmjYepgU =os .PmjYepgU .ZekTGKCR (y4SdDlTI ,b6IUYFU0 )
+        try :
+        # try to append the file as JSON dataset; load_and_append_data will open and infer structure
+            PHChUi02 =load_and_append_data (PHChUi02 ,PmjYepgU ,uLvGhsQk =None )
+            print (f"Addon-Dataset angehängt: {PmjYepgU }")
+        except MUiXSBLW as cGG0cYe6 :
+            print (f"Fehler beim Anhängen von Addon {PmjYepgU }: {cGG0cYe6 }")
+    return PHChUi02 
 
-# Prüfe ./addons auf zusätzliche Datendateien und hänge sie an
-training_data = install_addon_datasets(training_data, './addons')
+    # Prüfe ./addons auf zusätzliche Datendateien und hänge sie an
+PHChUi02 =aG0czq82 (PHChUi02 ,'./addons')
 
-if not training_data:
-    raise ValueError("Das Trainingsdatenset ist leer. Bitte überprüfen Sie die Quelle der Daten.")
+if not PHChUi02 :
+    raise HQfQaU2b ("Das Trainingsdatenset ist leer. Bitte überprüfen Sie die Quelle der Daten.")
 
-# Daten vorverarbeiten
-vectorizer = TfidfVectorizer()
-questions = [data['question'] for data in training_data]
-X = vectorizer.fit_transform(questions)
+    # Daten vorverarbeiten
+hBXsvWcT =TfidfVectorizer ()
+LunLS2R9 =[data ['question']for data in PHChUi02 ]
+E8Lepu0y =hBXsvWcT .RiUuWvfn (LunLS2R9 )
 
-answers = [data['answer'] for data in training_data]
-model = SVC(kernel='linear')
-model.fit(X, answers)
+nGlP19CX =[data ['answer']for data in PHChUi02 ]
+EXTaWmtO =SVC (E3Rend2x ='linear')
+EXTaWmtO .YjYoQPwg (E8Lepu0y ,nGlP19CX )
 
 # Zusatzfunktionen für NLP
-stemmer = PorterStemmer()
-lemmatizer = WordNetLemmatizer()
-modelofAI = input("Wähle ein Modell aus (Gemma2-9b-it[1] LATIN-AI[2]):")
+PqbHYzRE =PorterStemmer ()
+VfiadNcN =WordNetLemmatizer ()
+oicMIAAD =input ("Wähle ein Modell aus (Gemma2-9b-it[1] LATIN-AI[2]):")
 
-def send_gibberlink_sound(text, ultrasound=False):
-    try:
-        # Wähle den passenden Modus: audible (default) oder ultrasound
-        profile = "&p=4" if ultrasound else ""
-        encoded_text = quote(text)
-        url = f"https://ggwave-to-file.ggerganov.com/?m={encoded_text}{profile}"
-        filename = "gibberlink.wav"
+def KtOPPWyi (bYm31FIV ,PQilHxcH =False ):
+    try :
+    # Wähle den passenden Modus: audible (default) oder ultrasound
+        PzGGQtKL ="&p=4"if PQilHxcH else ""
+        wws5VOQP =quote (bYm31FIV )
+        NnPhg8SZ =f"https://ggwave-to-file.ggerganov.com/?m={wws5VOQP }{PzGGQtKL }"
+        mALN8sb5 ="gibberlink.wav"
 
         # Lade die WAV-Datei herunter
-        os.system(f"curl -sS {url} --output {filename}")
+        os .wLAqxkmL (f"curl -sS {NnPhg8SZ } --output {mALN8sb5 }")
 
         # Prüfe, ob die Datei existiert und abspielbar ist
-        if os.path.exists(filename):
-            try:
-                subprocess.Popen(["python", "./experimental/gibberlink.py", filename])
-            except Exception as audio_error:
-                print(f"[Gibberlink] Audio konnte nicht abgespielt werden: {audio_error}")
-        else:
-            print("[Gibberlink] WAV-Datei wurde nicht erfolgreich heruntergeladen.")
-    except Exception as e:
-        print(f"[Gibberlink] Fehler beim Senden des Tons: {e}")
-# Transformer-Architektur
-class TransformerModel(nn.Module):
-    def __init__(self, input_dim, model_dim, num_heads, num_layers, output_dim):
-        super(TransformerModel, self).__init__()
-        self.embedding = nn.Embedding(input_dim, model_dim)
-        self.transformer = nn.Transformer(model_dim, num_heads, num_layers)
-        self.fc = nn.Linear(model_dim, output_dim)
+        if os .PmjYepgU .VVlsMlEl (mALN8sb5 ):
+            try :
+                subprocess .OyF1bs1o (["python","./experimental/gibberlink.py",mALN8sb5 ])
+            except MUiXSBLW as P1RPyicI :
+                print (f"[Gibberlink] Audio konnte nicht abgespielt werden: {P1RPyicI }")
+        else :
+            print ("[Gibberlink] WAV-Datei wurde nicht erfolgreich heruntergeladen.")
+    except MUiXSBLW as cGG0cYe6 :
+        print (f"[Gibberlink] Fehler beim Senden des Tons: {cGG0cYe6 }")
+        # Transformer-Architektur
+class VhEI2UxS (nn .LKnomQMv ):
+    def R2a5zmKP (self ,dkkKDOCz ,Ct6yAHQX ,XV88zklq ,bBoop1SU ,cO3cYU09 ):
+        super (VhEI2UxS ,self ).R2a5zmKP ()
+        self .q8DldqJy =nn .BOq6wL2c (dkkKDOCz ,Ct6yAHQX )
+        self .CVlKc5kO =nn .dxtUHxLJ (Ct6yAHQX ,XV88zklq ,bBoop1SU )
+        self .Q3IWwvpH =nn .QCsyxihj (Ct6yAHQX ,cO3cYU09 )
 
-    def forward(self, src, tgt):
-        src = self.embedding(src)
-        tgt = self.embedding(tgt)
-        output = self.transformer(src, tgt)
-        output = self.fc(output)
-        return output
+    def r1EItsse (self ,Hyp1Hvc8 ,ruuvoY8x ):
+        Hyp1Hvc8 =self .q8DldqJy (Hyp1Hvc8 )
+        ruuvoY8x =self .q8DldqJy (ruuvoY8x )
+        wflMdJtr =self .CVlKc5kO (Hyp1Hvc8 ,ruuvoY8x )
+        wflMdJtr =self .Q3IWwvpH (wflMdJtr )
+        return wflMdJtr 
 
-# Initialisiere das Transformer-Modell
-input_dim = len(vectorizer.vocabulary_)
-model_dim = 512
-num_heads = 8
-num_layers = 6
-output_dim = len(set(answers))
-transformer_model = TransformerModel(input_dim, model_dim, num_heads, num_layers, output_dim)
+        # Initialisiere das Transformer-Modell
+dkkKDOCz =len (hBXsvWcT .EzoQZoGO )
+Ct6yAHQX =512 
+XV88zklq =8 
+bBoop1SU =6 
+cO3cYU09 =len (set (nGlP19CX ))
+x7AtMDFz =VhEI2UxS (dkkKDOCz ,Ct6yAHQX ,XV88zklq ,bBoop1SU ,cO3cYU09 )
 
-if modelofAI == "2":
-    def preprocess_text(text):
-        try:
-            tokens = word_tokenize(text)
-            stemmed = [stemmer.stem(token) for token in tokens]
-            lemmatized = [lemmatizer.lemmatize(token) for token in tokens]
-            pos_tags = pos_tag(tokens)
-            named_entities = ne_chunk(pos_tags)
+if oicMIAAD =="2":
+    def GIE5dgz3 (bYm31FIV ):
+        try :
+            O9XfFnDJ =word_tokenize (bYm31FIV )
+            UFwXAsw9 =[PqbHYzRE .Xhw7iAQ9 (OuojIsL3 )for OuojIsL3 in O9XfFnDJ ]
+            MCUtynhR =[VfiadNcN .lWC3Ndv4 (OuojIsL3 )for OuojIsL3 in O9XfFnDJ ]
+            ypcdlhHH =pos_tag (O9XfFnDJ )
+            NG0CUroN =ne_chunk (ypcdlhHH )
             return {
-                "tokens": tokens,
-                "stemmed": stemmed,
-                "lemmatized": lemmatized,
-                "pos_tags": pos_tags,
-                "named_entities": named_entities
+            "tokens":O9XfFnDJ ,
+            "stemmed":UFwXAsw9 ,
+            "lemmatized":MCUtynhR ,
+            "pos_tags":ypcdlhHH ,
+            "named_entities":NG0CUroN 
             }
-        except Exception as e:
-            return {"error": str(e)}
-    import matplotlib.pyplot as plt
+        except MUiXSBLW as cGG0cYe6 :
+            return {"error":str (cGG0cYe6 )}
+    import GdmP5keh .iRrT98uQ as plt 
 
-    def generate_math_plot(expression, filename="plot.png"):
-        try:
-            # Beispiel: Parabel zeichnen
-            if expression == "parabel":
-                x = np.linspace(-10, 10, 400)
-                y = x**2
-                plt.figure()
-                plt.plot(x, y, label="y = x^2")
-                plt.title("Parabel")
-                plt.xlabel("x")
-                plt.ylabel("y")
-                plt.axhline(0, color='black',linewidth=0.5)
-                plt.axvline(0, color='black',linewidth=0.5)
-                plt.grid(color = 'gray', linestyle = '--', linewidth = 0.5)
-                plt.legend()
-                plt.savefig(filename)
-                plt.close()
-                return filename
-            else:
-                return None
-        except Exception as e:
-            print(f"Fehler beim Generieren der Grafik: {e}")
-            return None
+    def okHLgufK (OMXagALU ,mALN8sb5 ="plot.png"):
+        try :
+        # Beispiel: Parabel zeichnen
+            if OMXagALU =="parabel":
+                eeKP2ngy =np .Ib0bZbVt (-10 ,10 ,400 )
+                v19jVaaA =eeKP2ngy **2 
+                plt .frZuDLAO ()
+                plt .PBimxQO7 (eeKP2ngy ,v19jVaaA ,iScIBZGu ="y = x^2")
+                plt .orxDrAOj ("Parabel")
+                plt .PJKiJC3j ("x")
+                plt .N9VOX0sB ("y")
+                plt .b3Teqpht (0 ,zsSl9C3l ='black',OIbh77kn =0.5 )
+                plt .xbg8Qys5 (0 ,zsSl9C3l ='black',OIbh77kn =0.5 )
+                plt .V2WEcgZA (zsSl9C3l ='gray',zMn4JICz ='--',OIbh77kn =0.5 )
+                plt .TAI7w8Pi ()
+                plt .fz77p3XH (mALN8sb5 )
+                plt .IJxZQt9X ()
+                return mALN8sb5 
+            else :
+                return None 
+        except MUiXSBLW as cGG0cYe6 :
+            print (f"Fehler beim Generieren der Grafik: {cGG0cYe6 }")
+            return None 
 
-    # Funktion zur Evaluierung mathematischer Ausdrücke
-    def evaluate_math_expression(expression):
-        try:
-            # Berechne das Ergebnis
-            result = eval(expression)
+            # Funktion zur Evaluierung mathematischer Ausdrücke
+    def EJ5RZnjL (OMXagALU ):
+        try :
+        # Berechne das Ergebnis
+            Of2Sjtwq =etw9tApW (OMXagALU )
 
             # Visualisiere die Rechenschritte
-            filename = visualize_calculation_steps(expression)
-            if filename:
-                show_plot_in_gui(filename)
+            mALN8sb5 =pXnQfEBn (OMXagALU )
+            if mALN8sb5 :
+                aiHXC64c (mALN8sb5 )
 
-            return f"Das Ergebnis ist: {result}"
-        except Exception as e:
-            return f"Fehler beim Auswerten des Ausdrucks: {str(e)}"
-    import re
-    def open_vscode():
-        try:
-            os.system("code")
-        except Exception as e:
-            print(f"Visual Studio code not installed or not on path; {e}")
-    def search_web(query):
-        query = "Unimplemented Feature"
-        return query
-    def visualize_calculation_steps(expression, filename="calculation_steps.png"):
-        try:
-            # Zerlege den Ausdruck in Schritte
-            steps = []
-            current_expression = expression
+            return f"Das Ergebnis ist: {Of2Sjtwq }"
+        except MUiXSBLW as cGG0cYe6 :
+            return f"Fehler beim Auswerten des Ausdrucks: {str (cGG0cYe6 )}"
+    import re 
+    def SBYoLiUb ():
+        try :
+            os .wLAqxkmL ("code")
+        except MUiXSBLW as cGG0cYe6 :
+            print (f"Visual Studio code not installed or not on path; {cGG0cYe6 }")
+    def u4lDp9hu (BQ8H1yQa ):
+        BQ8H1yQa ="Unimplemented Feature"
+        return BQ8H1yQa 
+    def pXnQfEBn (OMXagALU ,mALN8sb5 ="calculation_steps.png"):
+        try :
+        # Zerlege den Ausdruck in Schritte
+            eKfCrgbX =[]
+            Glq3Ry1B =OMXagALU 
 
             # Berechne Schritt für Schritt unter Berücksichtigung der Reihenfolge der Operationen
-            while True:
-                # Finde die innerste Klammer oder den nächsten Operator
-                match = re.search(r"\(([^()]+)\)", current_expression)  # Suche nach Klammern
-                if match:
-                    sub_expression = match.group(1)
-                    result = eval(sub_expression)
-                    steps.append((f"{sub_expression} = {result}", result))
-                    current_expression = current_expression.replace(f"({sub_expression})", str(result))
-                else:
-                    # Keine Klammern mehr, berechne den Rest
-                    result = eval(current_expression)
-                    steps.append((f"{current_expression} = {result}", result))
-                    break
+            while True :
+            # Finde die innerste Klammer oder den nächsten Operator
+                AZyBGQY4 =re .ELFlhVeN (r"\(([^()]+)\)",Glq3Ry1B )# Suche nach Klammern
+                if AZyBGQY4 :
+                    Av0Yxw0z =AZyBGQY4 .O424etON (1 )
+                    Of2Sjtwq =etw9tApW (Av0Yxw0z )
+                    eKfCrgbX .x45v63Zs ((f"{Av0Yxw0z } = {Of2Sjtwq }",Of2Sjtwq ))
+                    Glq3Ry1B =Glq3Ry1B .CJvWLhUz (f"({Av0Yxw0z })",str (Of2Sjtwq ))
+                else :
+                # Keine Klammern mehr, berechne den Rest
+                    Of2Sjtwq =etw9tApW (Glq3Ry1B )
+                    eKfCrgbX .x45v63Zs ((f"{Glq3Ry1B } = {Of2Sjtwq }",Of2Sjtwq ))
+                    break 
 
-            # Erstelle die Grafik
-            plt.figure(figsize=(10, 6))
-            y_pos = range(len(steps))
-            expressions = [step[0] for step in steps]
-            results = [step[1] for step in steps]
+                    # Erstelle die Grafik
+            plt .frZuDLAO (dJXCNVDx =(10 ,6 ))
+            Roo5oDWe =range (len (eKfCrgbX ))
+            JR7y85Ul =[jO5rxSys [0 ]for jO5rxSys in eKfCrgbX ]
+            hcsE7Lpg =[jO5rxSys [1 ]for jO5rxSys in eKfCrgbX ]
 
-            plt.barh(y_pos, results, color='skyblue')
-            plt.yticks(y_pos, expressions)
-            plt.xlabel("Ergebnisse")
-            plt.title("Rechenschritte")
-            plt.tight_layout()
-            plt.savefig(filename)
-            plt.close()
-            return filename
-        except Exception as e:
-            print(f"Fehler bei der Visualisierung der Rechenschritte: {e}")
-            return None
+            plt .f7rWpEAE (Roo5oDWe ,hcsE7Lpg ,zsSl9C3l ='skyblue')
+            plt .FHJGEjbh (Roo5oDWe ,JR7y85Ul )
+            plt .PJKiJC3j ("Ergebnisse")
+            plt .orxDrAOj ("Rechenschritte")
+            plt .YMvDMHrW ()
+            plt .fz77p3XH (mALN8sb5 )
+            plt .IJxZQt9X ()
+            return mALN8sb5 
+        except MUiXSBLW as cGG0cYe6 :
+            print (f"Fehler bei der Visualisierung der Rechenschritte: {cGG0cYe6 }")
+            return None 
 
 
-    # --- NEW: extract measurement snippets from text and try wiki variants ---
-    def extract_measurement_from_text(text):
-        if not text:
-            return None
-        # normalize whitespace
-        txt = re.sub(r'\s+', ' ', text)
+            # --- NEW: extract measurement snippets from text and try wiki variants ---
+    def zOPmHwpm (bYm31FIV ):
+        if not bYm31FIV :
+            return None 
+            # normalize whitespace
+        Y7KwggWV =re .TK941fkh (r'\s+',' ',bYm31FIV )
         # common unit patterns (DE + EN) and numeric ranges
-        patterns = [
-            r'(\d{1,4}(?:[.,]\d+)?\s?(?:m|Meter|Metern|meter|metres|meters|cm|Zentimeter|centimeter|km|Millimeter|mm|ft|feet|in|inch|Zoll))',
-            r'(\d{1,4}(?:[.,]\d+)?\s?(?:cm|Zentimeter|centimeter))',
-            r'(\d{1,4}(?:[.,]\d+)?\s?(?:kg|Kilogramm|g|Gramm|lbs|pounds))',
-            r'(\d+(?:[.,]\d+)?\s?[-–]\s?\d+(?:[.,]\d+)?\s?(?:m|cm|ft|in|mm))',
-            r'(bis\s+zu\s+\d+(?:[.,]\d+)?\s?(?:m|cm|kg))',
-            r'(etwa\s+\d+(?:[.,]\d+)?\s?(?:m|cm|kg))',
-            r'(~\s?\d+(?:[.,]\d+)?\s?(?:m|cm|kg))',
+        pIrJ69fl =[
+        r'(\d{1,4}(?:[.,]\d+)?\s?(?:m|Meter|Metern|meter|metres|meters|cm|Zentimeter|centimeter|km|Millimeter|mm|ft|feet|in|inch|Zoll))',
+        r'(\d{1,4}(?:[.,]\d+)?\s?(?:cm|Zentimeter|centimeter))',
+        r'(\d{1,4}(?:[.,]\d+)?\s?(?:kg|Kilogramm|g|Gramm|lbs|pounds))',
+        r'(\d+(?:[.,]\d+)?\s?[-–]\s?\d+(?:[.,]\d+)?\s?(?:m|cm|ft|in|mm))',
+        r'(bis\s+zu\s+\d+(?:[.,]\d+)?\s?(?:m|cm|kg))',
+        r'(etwa\s+\d+(?:[.,]\d+)?\s?(?:m|cm|kg))',
+        r'(~\s?\d+(?:[.,]\d+)?\s?(?:m|cm|kg))',
         ]
-        for p in patterns:
-            m = re.search(p, txt, flags=re.IGNORECASE)
-            if m:
-                return m.group(1).strip()
-        # phrases like "average/typical length is 4.5 m" (EN/DE)
-        m = re.search(r'(?:average|typical|mean|durchschnittlich|im Durchschnitt)\s+(?:length|Länge)\s*(?:is|ist|:)?\s*([\d.,]+\s?(?:m|cm|metres|meters|ft|feet|in|inch|Zentimeter|Zoll))', txt, flags=re.IGNORECASE)
-        if m:
-            return m.group(1).strip()
-        # "length is X m" or "ist X m"
-        m = re.search(r'(?:length|Länge)\s*(?:is|ist|:)?\s*([\d.,]+\s?(?:m|cm|ft|in|metres|meters|Zentimeter|Zoll))', txt, flags=re.IGNORECASE)
-        if m:
-            return m.group(1).strip()
-        # fallback: "ist X lang" style
-        m = re.search(r'ist\s+(?:etwa|ungefähr|ca\.?|circa)?\s*([\d.,\s\-–]+)\s?(m|cm|kg|Meter|Zentimeter|Kilogramm|Zoll|inch|feet)', txt, flags=re.IGNORECASE)
-        if m:
-            num = m.group(1).strip().replace(' ', '')
-            unit = m.group(2).strip()
-            return f"{num}{unit}"
-        return None
+        for NlfddWjg in pIrJ69fl :
+            cd3R1jn7 =re .ELFlhVeN (NlfddWjg ,Y7KwggWV ,Q0swAgoP =re .e9ZpexQU )
+            if cd3R1jn7 :
+                return cd3R1jn7 .O424etON (1 ).xZd2cl2Z ()
+                # phrases like "average/typical length is 4.5 m" (EN/DE)
+        cd3R1jn7 =re .ELFlhVeN (r'(?:average|typical|mean|durchschnittlich|im Durchschnitt)\s+(?:length|Länge)\s*(?:is|ist|:)?\s*([\d.,]+\s?(?:m|cm|metres|meters|ft|feet|in|inch|Zentimeter|Zoll))',Y7KwggWV ,Q0swAgoP =re .e9ZpexQU )
+        if cd3R1jn7 :
+            return cd3R1jn7 .O424etON (1 ).xZd2cl2Z ()
+            # "length is X m" or "ist X m"
+        cd3R1jn7 =re .ELFlhVeN (r'(?:length|Länge)\s*(?:is|ist|:)?\s*([\d.,]+\s?(?:m|cm|ft|in|metres|meters|Zentimeter|Zoll))',Y7KwggWV ,Q0swAgoP =re .e9ZpexQU )
+        if cd3R1jn7 :
+            return cd3R1jn7 .O424etON (1 ).xZd2cl2Z ()
+            # fallback: "ist X lang" style
+        cd3R1jn7 =re .ELFlhVeN (r'ist\s+(?:etwa|ungefähr|ca\.?|circa)?\s*([\d.,\s\-–]+)\s?(m|cm|kg|Meter|Zentimeter|Kilogramm|Zoll|inch|feet)',Y7KwggWV ,Q0swAgoP =re .e9ZpexQU )
+        if cd3R1jn7 :
+            OYsXe7o6 =cd3R1jn7 .O424etON (1 ).xZd2cl2Z ().CJvWLhUz (' ','')
+            yb7UesuT =cd3R1jn7 .O424etON (2 ).xZd2cl2Z ()
+            return f"{OYsXe7o6 }{yb7UesuT }"
+        return None 
 
-    # --- NEW: normalize subject and map common synonyms ---
-    def normalize_subject(subj):
-        if not subj:
-            return None
-        # remove diacritics, collapse whitespace, lowercase
-        s = unicodedata.normalize('NFKD', subj)
-        s = ''.join(ch for ch in s if not unicodedata.combining(ch))
-        s = re.sub(r'\s+', ' ', s).strip()
-        return s
+        # --- NEW: normalize subject and map common synonyms ---
+    def MGFdOlsl (u9KlcSVz ):
+        if not u9KlcSVz :
+            return None 
+            # remove diacritics, collapse whitespace, lowercase
+        ujXgGKt1 =unicodedata .e5S5mmnr ('NFKD',u9KlcSVz )
+        ujXgGKt1 =''.ZekTGKCR (Nh8Zdd6J for Nh8Zdd6J in ujXgGKt1 if not unicodedata .eAGnv0C2 (Nh8Zdd6J ))
+        ujXgGKt1 =re .TK941fkh (r'\s+',' ',ujXgGKt1 ).xZd2cl2Z ()
+        return ujXgGKt1 
 
-    # --- REPLACED/EXTENDED: try targeted queries and DuckDuckGo + english variants ---
-    def find_measurement_for_subject(subj):
+        # --- REPLACED/EXTENDED: try targeted queries and DuckDuckGo + english variants ---
+    def uizVF6YG (u9KlcSVz ):
         """
         Try multiple queries (wiki variants + targeted 'Länge' queries + DuckDuckGo snippets)
         Return tuple (measurement_string, source_text_short) or (None, None).
         """
-        if not subj:
-            return None, None
+        if not u9KlcSVz :
+            return None ,None 
 
-        subj_norm = normalize_subject(subj)
+        fZhMMFF8 =MGFdOlsl (u9KlcSVz )
         # build candidate queries (DE + EN) and synonyms
-        candidates = []
+        MiPFdzvy =[]
         # base
-        candidates.append(subj)
-        candidates.append(subj_norm)
+        MiPFdzvy .x45v63Zs (u9KlcSVz )
+        MiPFdzvy .x45v63Zs (fZhMMFF8 )
         # German targeted forms
-        candidates += [
-            f"{subj} Länge",
-            f"Länge {subj}",
-            f"Durchschnittliche Länge {subj}",
-            f"Durchschnittliche Länge {subj_norm}",
-            f"{subj} Größe",
+        MiPFdzvy +=[
+        f"{u9KlcSVz } Länge",
+        f"Länge {u9KlcSVz }",
+        f"Durchschnittliche Länge {u9KlcSVz }",
+        f"Durchschnittliche Länge {fZhMMFF8 }",
+        f"{u9KlcSVz } Größe",
         ]
         # synonyms for common terms
-        if re.search(r'\bauto\b', subj_norm, flags=re.IGNORECASE) or re.search(r'\bwagen\b', subj_norm, flags=re.IGNORECASE):
-            candidates += ["Auto", "Personenkraftwagen", "PKW", "Durchschnittliche Länge Auto", "Durchschnittliche Länge PKW"]
-        if re.search(r'\brüssel\b', subj_norm, flags=re.IGNORECASE):
-            candidates += ["Rüssel", "Elefantenrüssel", "Rüssel Elefant Länge"]
+        if re .ELFlhVeN (r'\bauto\b',fZhMMFF8 ,Q0swAgoP =re .e9ZpexQU )or re .ELFlhVeN (r'\bwagen\b',fZhMMFF8 ,Q0swAgoP =re .e9ZpexQU ):
+            MiPFdzvy +=["Auto","Personenkraftwagen","PKW","Durchschnittliche Länge Auto","Durchschnittliche Länge PKW"]
+        if re .ELFlhVeN (r'\brüssel\b',fZhMMFF8 ,Q0swAgoP =re .e9ZpexQU ):
+            MiPFdzvy +=["Rüssel","Elefantenrüssel","Rüssel Elefant Länge"]
 
-        # english fallbacks
-        candidates += [
-            f"{subj_norm} length",
-            "car length",
-            "average car length",
-            "typical car length",
-            "elephant trunk length",
-            "length of elephant trunk"
+            # english fallbacks
+        MiPFdzvy +=[
+        f"{fZhMMFF8 } length",
+        "car length",
+        "average car length",
+        "typical car length",
+        "elephant trunk length",
+        "length of elephant trunk"
         ]
 
-        tried = set()
+        DJL62S5D =set ()
         # try Wikipedia page extracts first (better chance to contain numbers)
-        for q in candidates:
-            if not q or q in tried:
-                continue
-            tried.add(q)
-            try:
-                page_text = fetch_wikipedia_page_text(q)
-            except Exception:
-                page_text = None
-            if page_text:
-                measurement = extract_measurement_from_text(page_text)
-                if measurement:
-                    return measurement, f"Wikipedia page: {q}"
-            # fallback to summary if page_text didn't exist
-            try:
-                wiki = fetch_wikipedia_summary(q)
-            except Exception:
-                wiki = None
-            if wiki:
-                measurement = extract_measurement_from_text(wiki)
-                if measurement:
-                    return measurement, f"Wikipedia summary: {q}"
+        for bIbMgeXz in MiPFdzvy :
+            if not bIbMgeXz or bIbMgeXz in DJL62S5D :
+                continue 
+            DJL62S5D .oIwyVR5V (bIbMgeXz )
+            try :
+                ABNbKOhK =fetch_wikipedia_page_text (bIbMgeXz )
+            except MUiXSBLW :
+                ABNbKOhK =None 
+            if ABNbKOhK :
+                f5Nz6dDr =zOPmHwpm (ABNbKOhK )
+                if f5Nz6dDr :
+                    return f5Nz6dDr ,f"Wikipedia page: {bIbMgeXz }"
+                    # fallback to summary if page_text didn't exist
+            try :
+                lgS6waFp =fetch_wikipedia_summary (bIbMgeXz )
+            except MUiXSBLW :
+                lgS6waFp =None 
+            if lgS6waFp :
+                f5Nz6dDr =zOPmHwpm (lgS6waFp )
+                if f5Nz6dDr :
+                    return f5Nz6dDr ,f"Wikipedia summary: {bIbMgeXz }"
 
-        # also try broader Wikipedia variants (existing helper)
-        try:
-            wiki_variant = fetch_wikipedia_variants(subj)
-        except Exception:
-            wiki_variant = None
-        if wiki_variant:
-            measurement = extract_measurement_from_text(wiki_variant)
-            if measurement:
-                return measurement, "Wikipedia (variant)"
+                    # also try broader Wikipedia variants (existing helper)
+        try :
+            bj57a0bo =fetch_wikipedia_variants (u9KlcSVz )
+        except MUiXSBLW :
+            bj57a0bo =None 
+        if bj57a0bo :
+            f5Nz6dDr =zOPmHwpm (bj57a0bo )
+            if f5Nz6dDr :
+                return f5Nz6dDr ,"Wikipedia (variant)"
 
-        # lastly try DuckDuckGo search snippets for a few prioritized queries
-        for q in [f"{subj} Länge", f"{subj_norm} length", "durchschnittliche Länge Auto", "average car length", "elephant trunk length"]:
-            try:
-                sd = search_web(q)
-            except Exception:
-                sd = None
-            if sd and isinstance(sd, str):
-                measurement = extract_measurement_from_text(sd)
-                if measurement:
-                    src = "DuckDuckGo: " + q
-                    return measurement, src
+                # lastly try DuckDuckGo search snippets for a few prioritized queries
+        for bIbMgeXz in [f"{u9KlcSVz } Länge",f"{fZhMMFF8 } length","durchschnittliche Länge Auto","average car length","elephant trunk length"]:
+            try :
+                VkTcf0UP =u4lDp9hu (bIbMgeXz )
+            except MUiXSBLW :
+                VkTcf0UP =None 
+            if VkTcf0UP and hbW0l36U (VkTcf0UP ,str ):
+                f5Nz6dDr =zOPmHwpm (VkTcf0UP )
+                if f5Nz6dDr :
+                    Hyp1Hvc8 ="DuckDuckGo: "+bIbMgeXz 
+                    return f5Nz6dDr ,Hyp1Hvc8 
 
-        return None, None
+        return None ,None 
 
-    # Funktion zur Beantwortung von Fragen
-    if GIBBERLINK_EXPERIMENTAL != False:
-        GIBBERLINK_EXPERIMENTAL = "--gibberlink=true" in sys.argv  # oder False, je nach Bedarf
-    
+        # Funktion zur Beantwortung von Fragen
+    if VGl5VGLn !=False :
+        VGl5VGLn ="--gibberlink=true"in sys .jPa0fvvK # oder False, je nach Bedarf
 
-    def chatbot_response(question):
-        print(question)
-        try:
-            # quick math detection: evaluate simple arithmetic expressions even without "Berechne"
-            # matches inputs containing digits and math operators (e.g. "2*4", "12 / (3+1)")
-            if re.search(r'\d', question) and re.search(r'[\+\-\*\/\^()]', question):
-                try:
-                    # use existing evaluate_math_expression when available
-                    result = evaluate_math_expression(question)
-                    return result, {"tokens": [], "note": "evaluated-as-math"}
-                except Exception:
-                    # fallback: continue to NLP if evaluation fails
-                    pass
 
-            # Gibberlink aktivieren, wenn EXPERIMENTAL-Modus an ist
+    def ylxkNfsA (paTVXZbF ):
+        print (paTVXZbF )
+        try :
+        # quick math detection: evaluate simple arithmetic expressions even without "Berechne"
+        # matches inputs containing digits and math operators (e.g. "2*4", "12 / (3+1)")
+            if re .ELFlhVeN (r'\d',paTVXZbF )and re .ELFlhVeN (r'[\+\-\*\/\^()]',paTVXZbF ):
+                try :
+                # use existing evaluate_math_expression when available
+                    Of2Sjtwq =EJ5RZnjL (paTVXZbF )
+                    return Of2Sjtwq ,{"tokens":[],"note":"evaluated-as-math"}
+                except MUiXSBLW :
+                # fallback: continue to NLP if evaluation fails
+                    pass 
 
-            # NEW: Definition/Übersetzungsanfragen (Wortbedeutung)
-            if re.search(r'\bwas\s+bedeutet\b|\bwas\s+heißt\b|\bbedeutung\s+von\b', question, flags=re.IGNORECASE):
-                term = extract_subject_from_question(question)
-                if term:
-                    # prefer wiktionary, fallback to wikipedia summary/page
-                    definition = fetch_wiktionary_definition(term)
-                    if not definition:
-                        # try wikipedia page text then summary
-                        definition = fetch_wikipedia_page_text(term) or fetch_wikipedia_summary(term)
-                    if definition:
-                        first_para = definition.split("\n\n")[0].strip()
-                        return f"'{term}' bedeutet:\n{first_para}", {"tokens": [], "note": "dictionary"}
-                return "Dazu konnte ich leider keine Definition finden.", {"tokens": [], "note": "no-definition"}
+                    # Gibberlink aktivieren, wenn EXPERIMENTAL-Modus an ist
 
-            # REPLACED: improved measurement question handling
-            if re.search(r'\bwie\s+(lang|groß|hoch|schwer|alt)\b', question, flags=re.IGNORECASE):
-                subj = extract_subject_from_question(question)
+                    # NEW: Definition/Übersetzungsanfragen (Wortbedeutung)
+            if re .ELFlhVeN (r'\bwas\s+bedeutet\b|\bwas\s+heißt\b|\bbedeutung\s+von\b',paTVXZbF ,Q0swAgoP =re .e9ZpexQU ):
+                tKp1yC3V =extract_subject_from_question (paTVXZbF )
+                if tKp1yC3V :
+                # prefer wiktionary, fallback to wikipedia summary/page
+                    rKsMZKCx =fetch_wiktionary_definition (tKp1yC3V )
+                    if not rKsMZKCx :
+                    # try wikipedia page text then summary
+                        rKsMZKCx =fetch_wikipedia_page_text (tKp1yC3V )or fetch_wikipedia_summary (tKp1yC3V )
+                    if rKsMZKCx :
+                        t4YULAPo =rKsMZKCx .AAikQ8lA ("\n\n")[0 ].xZd2cl2Z ()
+                        return f"'{tKp1yC3V }' bedeutet:\n{t4YULAPo }",{"tokens":[],"note":"dictionary"}
+                return "Dazu konnte ich leider keine Definition finden.",{"tokens":[],"note":"no-definition"}
+
+                # REPLACED: improved measurement question handling
+            if re .ELFlhVeN (r'\bwie\s+(lang|groß|hoch|schwer|alt)\b',paTVXZbF ,Q0swAgoP =re .e9ZpexQU ):
+                u9KlcSVz =extract_subject_from_question (paTVXZbF )
                 # first try direct wiki variants (keeps previous behavior)
-                wiki = fetch_wikipedia_variants(subj) if subj else None
-                if wiki:
-                    measurement = extract_measurement_from_text(wiki)
-                    if measurement:
-                        subj_display = subj or "das Objekt"
-                        return f"Der {subj_display} ist ungefähr {measurement}. (Quelle: Wikipedia)", {"tokens": [], "note": "wikipedia-measurement"}
-                # if initial wiki summary didn't contain measurement, do targeted search attempts
-                measurement, source = find_measurement_for_subject(subj)
-                if measurement:
-                    subj_display = subj or "das Objekt"
-                    return f"Der {subj_display} ist ungefähr {measurement}. (Quelle: {source})", {"tokens": [], "note": "web-measurement"}
-                # fallback: if we had a wiki without measurement, return it (better than nothing)
-                if wiki:
-                    subj_display = subj or "das Objekt"
-                    return f"Ich habe zu '{subj_display}' folgende Info auf Wikipedia gefunden:\n{wiki}", {"tokens": [], "note": "wikipedia-summary"}
-                # nothing found -> fall back to general NLP below (or inform about missing data)
-                return "Dazu habe ich leider keine eindeutige Längenangabe gefunden.", {"tokens": [], "note": "no-measurement"}
+                lgS6waFp =fetch_wikipedia_variants (u9KlcSVz )if u9KlcSVz else None 
+                if lgS6waFp :
+                    f5Nz6dDr =zOPmHwpm (lgS6waFp )
+                    if f5Nz6dDr :
+                        dkcYPbhq =u9KlcSVz or "das Objekt"
+                        return f"Der {dkcYPbhq } ist ungefähr {f5Nz6dDr }. (Quelle: Wikipedia)",{"tokens":[],"note":"wikipedia-measurement"}
+                        # if initial wiki summary didn't contain measurement, do targeted search attempts
+                f5Nz6dDr ,TN50HTYB =uizVF6YG (u9KlcSVz )
+                if f5Nz6dDr :
+                    dkcYPbhq =u9KlcSVz or "das Objekt"
+                    return f"Der {dkcYPbhq } ist ungefähr {f5Nz6dDr }. (Quelle: {TN50HTYB })",{"tokens":[],"note":"web-measurement"}
+                    # fallback: if we had a wiki without measurement, return it (better than nothing)
+                if lgS6waFp :
+                    dkcYPbhq =u9KlcSVz or "das Objekt"
+                    return f"Ich habe zu '{dkcYPbhq }' folgende Info auf Wikipedia gefunden:\n{lgS6waFp }",{"tokens":[],"note":"wikipedia-summary"}
+                    # nothing found -> fall back to general NLP below (or inform about missing data)
+                return "Dazu habe ich leider keine eindeutige Längenangabe gefunden.",{"tokens":[],"note":"no-measurement"}
 
-            # Mathematischer Ausdruck
-            if question.startswith("Berechne"):
-                expression = question.split("Berechne")[-1].strip()
-                return evaluate_math_expression(expression), None
+                # Mathematischer Ausdruck
+            if paTVXZbF .n8n8FMRK ("Berechne"):
+                OMXagALU =paTVXZbF .AAikQ8lA ("Berechne")[-1 ].xZd2cl2Z ()
+                return EJ5RZnjL (OMXagALU ),None 
 
-            # VS Code öffnen
-            if question.lower() in ["öffne vs code", "code"]:
-                return open_vscode(), None
+                # VS Code öffnen
+            if paTVXZbF .HHv5Lm50 ()in ["öffne vs code","code"]:
+                return SBYoLiUb (),None 
 
-            # Websuche
-            if question.lower().startswith("suche nach"):
-                query = question.split("suche nach")[-1].strip()
-                return search_web(query), None
+                # Websuche
+            if paTVXZbF .HHv5Lm50 ().n8n8FMRK ("suche nach"):
+                BQ8H1yQa =paTVXZbF .AAikQ8lA ("suche nach")[-1 ].xZd2cl2Z ()
+                return u4lDp9hu (BQ8H1yQa ),None 
 
-            # Begrüßung
-            greetings = ["hallo", "hi", "hey", "guten tag"]
-            if question.lower() in greetings:
-                return "Hallo! Wie kann ich Ihnen helfen?", None
+                # Begrüßung
+            YTyIWyX4 =["hallo","hi","hey","guten tag"]
+            if paTVXZbF .HHv5Lm50 ()in YTyIWyX4 :
+                return "Hallo! Wie kann ich Ihnen helfen?",None 
 
-            # NLP-Modell
-            question_tfidf = vectorizer.transform([question])
-            response = model.predict(question_tfidf)[0]
-            nlp_info = preprocess_text(question)
+                # NLP-Modell
+            aWi6wg9t =hBXsvWcT .Q7C25tRk ([paTVXZbF ])
+            keNRWsw5 =EXTaWmtO .SAw2Tvwr (aWi6wg9t )[0 ]
+            o9AZHaef =GIE5dgz3 (paTVXZbF )
 
             # Try to enrich the model response with a deterministic Wikipedia summary
-            try:
-                subj = extract_subject_from_question(question)
+            try :
+                u9KlcSVz =extract_subject_from_question (paTVXZbF )
                 # do not attempt wiki if subject extraction failed (or was math)
-                wiki = fetch_wikipedia_summary(subj) if subj else None
-                if wiki:
-                    # append but avoid duplicating if already included
-                    if isinstance(response, str) and "[Wikipedia]" not in response:
-                        response = (response or "") + "\n\n[Wikipedia]: " + wiki
-            except Exception:
-                # degrade gracefully: return model response without augmentation
-                pass
+                lgS6waFp =fetch_wikipedia_summary (u9KlcSVz )if u9KlcSVz else None 
+                if lgS6waFp :
+                # append but avoid duplicating if already included
+                    if hbW0l36U (keNRWsw5 ,str )and "[Wikipedia]"not in keNRWsw5 :
+                        keNRWsw5 =(keNRWsw5 or "")+"\n\n[Wikipedia]: "+lgS6waFp 
+            except MUiXSBLW :
+            # degrade gracefully: return model response without augmentation
+                pass 
 
-            return response, nlp_info
+            return keNRWsw5 ,o9AZHaef 
 
-        except Exception as e:
-            return f"Fehler bei der Verarbeitung der Frage: {str(e)}", None
+        except MUiXSBLW as cGG0cYe6 :
+            return f"Fehler bei der Verarbeitung der Frage: {str (cGG0cYe6 )}",None 
 
-    # Funktion zum Hinzufügen von neuen Fragen und Antworten
-    def add_to_training_data(question, answer, file_path='training_data.json'):
-        global training_data
-        new_entry = {"question": question, "answer": answer}
-        training_data.append(new_entry)
-    
-        with open(file_path, 'w', encoding='utf-8') as file:
-            json.dump(training_data, file, ensure_ascii=False, indent=4)
-    
-        # Modelle neu trainieren
-        questions = [data['question'] for data in training_data]
-        X = vectorizer.fit_transform(questions)
-        answers = [data['answer'] for data in training_data]
-        model.fit(X, answers)
+            # Funktion zum Hinzufügen von neuen Fragen und Antworten
+    def QyDjDHig (paTVXZbF ,kZIgedhz ,G1qSicPh ='training_data.json'):
+        global PHChUi02 
+        thDyuDNW ={"question":paTVXZbF ,"answer":kZIgedhz }
+        PHChUi02 .x45v63Zs (thDyuDNW )
 
-    # Automatisches Lernen aus Interaktionen
-    def learn_from_interaction(user_input, expected_response):
-        add_to_training_data(user_input, expected_response)
-    from PyQt5.QtWidgets import QLabel, QVBoxLayout, QDialog
-    from PyQt5.QtGui import QPixmap
+        with open (G1qSicPh ,'w',IJDWbzFe ='utf-8')as qiXZJZPF :
+            json .JhENGPj5 (PHChUi02 ,qiXZJZPF ,XigD4yiK =False ,k014GC0u =4 )
 
-    def show_plot_in_gui(filename):
-        dialog = QDialog()
-        dialog.setWindowTitle("Mathematische Grafik")
-        layout = QVBoxLayout()
-        label = QLabel()
-        pixmap = QPixmap(filename)
-        label.setPixmap(pixmap)
-        layout.addWidget(label)
-        dialog.setLayout(layout)
-        dialog.exec_()
+            # Modelle neu trainieren
+        LunLS2R9 =[data ['question']for data in PHChUi02 ]
+        E8Lepu0y =hBXsvWcT .RiUuWvfn (LunLS2R9 )
+        nGlP19CX =[data ['answer']for data in PHChUi02 ]
+        EXTaWmtO .YjYoQPwg (E8Lepu0y ,nGlP19CX )
 
-    # Funktion zur Überprüfung und Verbesserung der Antwort
-    def validate_response(user_input, response):
-        print(f"Chatbot: {response}")
-        feedback = input("War die Antwort korrekt? (ja/nein): ").strip().lower()
-        if feedback == "nein":
-            correct_answer = input("Wie hätte ich antworten sollen? ")
-            learn_from_interaction(user_input, correct_answer)
-            return correct_answer
-        return response
+        # Automatisches Lernen aus Interaktionen
+    def WWe7d7F4 (HPgPPAEj ,Tt6qVpJn ):
+        QyDjDHig (HPgPPAEj ,Tt6qVpJn )
+    from pgPed4U1 .djUaXVAG import QLabel ,QVBoxLayout ,QDialog 
+    from pgPed4U1 .GfvuIcVJ import QPixmap 
 
-    # Chatbot testen
-    if __name__ == "__main__":
-        while True:
-            user_input = input("Du: ")
-            if user_input.lower() in ["exit", "quit"]:
-                break
-            elif user_input.lower().startswith("zeige mir eine parabel"):
-                filename = generate_math_plot("parabel")
-                if filename:
-                    show_plot_in_gui(filename)
-                    print("Hier ist die Grafik der Parabel.")
-                    continue  # Springe zur nächsten Eingabe
+    def aiHXC64c (mALN8sb5 ):
+        b6vhIGNF =QDialog ()
+        b6vhIGNF .dlHXFcaV ("Mathematische Grafik")
+        VhIyaQnN =QVBoxLayout ()
+        iScIBZGu =QLabel ()
+        fas74StV =QPixmap (mALN8sb5 )
+        iScIBZGu .x2CdMEAh (fas74StV )
+        VhIyaQnN .aa9E8qou (iScIBZGu )
+        b6vhIGNF .qeT6U0En (VhIyaQnN )
+        b6vhIGNF .mfExM1l9 ()
 
-            response, nlp_info = chatbot_response(user_input)
-        
-            if response is None:
-                print("Ich habe deine Frage nicht verstanden. Wie sollte ich darauf antworten?")
-                new_answer = input("Neue Antwort: ")
-                learn_from_interaction(user_input, new_answer)
-                response = new_answer
-            else:
-                response = validate_response(user_input, response)
-        
-            print("Chatbot:", response)
-            if GIBBERLINK_EXPERIMENTAL:
-                send_gibberlink_sound(response)
-                print("Gibberlink-Signal gesendet.", None)
-            print("NLP Info:", nlp_info)
+        # Funktion zur Überprüfung und Verbesserung der Antwort
+    def Midz8NQp (HPgPPAEj ,keNRWsw5 ):
+        print (f"Chatbot: {keNRWsw5 }")
+        dS6BseZF =input ("War die Antwort korrekt? (ja/nein): ").xZd2cl2Z ().HHv5Lm50 ()
+        if dS6BseZF =="nein":
+            eB56LbuC =input ("Wie hätte ich antworten sollen? ")
+            WWe7d7F4 (HPgPPAEj ,eB56LbuC )
+            return eB56LbuC 
+        return keNRWsw5 
 
-elif modelofAI == "1":
-    while True:
-        usersinput = input("Enter your message: ")
-        chat_completion = client.chat.completions.create(
-            messages=[
-                {
-                    "role": "user",
-                    "content": usersinput,
-                }
-            ],
-            model="llama-3.3-70b-versatile",
+        # Chatbot testen
+    if __name__ =="__main__":
+        while True :
+            HPgPPAEj =input ("Du: ")
+            if HPgPPAEj .HHv5Lm50 ()in ["exit","quit"]:
+                break 
+            elif HPgPPAEj .HHv5Lm50 ().n8n8FMRK ("zeige mir eine parabel"):
+                mALN8sb5 =okHLgufK ("parabel")
+                if mALN8sb5 :
+                    aiHXC64c (mALN8sb5 )
+                    print ("Hier ist die Grafik der Parabel.")
+                    continue # Springe zur nächsten Eingabe
+
+            keNRWsw5 ,o9AZHaef =ylxkNfsA (HPgPPAEj )
+
+            if keNRWsw5 is None :
+                print ("Ich habe deine Frage nicht verstanden. Wie sollte ich darauf antworten?")
+                sxcuruLe =input ("Neue Antwort: ")
+                WWe7d7F4 (HPgPPAEj ,sxcuruLe )
+                keNRWsw5 =sxcuruLe 
+            else :
+                keNRWsw5 =Midz8NQp (HPgPPAEj ,keNRWsw5 )
+
+            print ("Chatbot:",keNRWsw5 )
+            if VGl5VGLn :
+                KtOPPWyi (keNRWsw5 )
+                print ("Gibberlink-Signal gesendet.",None )
+            print ("NLP Info:",o9AZHaef )
+
+elif oicMIAAD =="1":
+    while True :
+        d0UNbkX1 =input ("Enter your message: ")
+        bdsZCRvt =Fo6j1qBb .gKHGPKxD .qMrktLK4 .mTimy9Nk (
+        JGBDpEXv =[
+        {
+        "role":"user",
+        "content":d0UNbkX1 ,
+        }
+        ],
+        EXTaWmtO ="llama-3.3-70b-versatile",
         )
 
-        print(chat_completion.choices[0].message.content)
+        print (bdsZCRvt .Z5J79i9C [0 ].x0OJXps2 .Tai7lnne )
